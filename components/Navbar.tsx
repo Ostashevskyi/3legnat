@@ -1,17 +1,20 @@
 "use client";
+import React, { useState } from "react";
+
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Squash as Hamburger } from "hamburger-react";
+
+import Counter from "./Counter";
+import Discount from "./Discount";
+import SearchInput from "./SearchInput";
+
 import {
   HEADER_NAV_ICONS,
   HEADER_NAV_LINKS,
   HEADER_OPEN_ICON,
 } from "@/utils/constants";
-import Image from "next/image";
-import Link from "next/link";
-import React, { useState } from "react";
-import { usePathname } from "next/navigation";
-import { Squash as Hamburger } from "hamburger-react";
-import SearchInput from "./SearchInput";
-import Discount from "./Discount";
-import Counter from "./Counter";
 
 const Navbar = () => {
   const pathname = usePathname();
