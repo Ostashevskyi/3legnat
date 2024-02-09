@@ -1,7 +1,3 @@
 export default function Home() {
-  return (
-    <>
-      <p className="hero">Some text</p>
-    </>
-  );
+  return <div className="max-container"></div>;
 }

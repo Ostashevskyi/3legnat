@@ -8,8 +8,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      colors: {
+        primary_black: "var(--primary_black)",
+        secondary_blue: "var(--secondary_blue)",
+        secondary_green: "var(--secondary_green)",
+        secondary_orange: "var(--secondary_orange)",
+        secondary_red: "var(--secondary_red)",
+        neutral_07: "var(--neutral_07)",
+        neutral_06: "var(--neutral_06)",
+        neutral_05: "var(--neutral_05)",
+        neutral_04: "var(--neutral_04)",
+        neutral_03: "var(--neutral_03)",
+        neutral_02: "var(--neutral_02)",
+        neutral_01: "var(--neutral_01)",
+      },
       fontFamily: {
         'poppins': ['Poppins'],
+        'space-grotesk': ['Space Grotesk'],
       },
       fontSize: {
         '20': "20px",
