@@ -8,11 +8,36 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+      fontFamily: {
+        'poppins': ['Poppins'],
       },
+      fontSize: {
+        '20': "20px",
+        '22': "22px",
+        '26': "26px",
+        '28': "28px",
+        '34': "34px",
+        '40': "40px",
+        '54': "54px",
+        '72': "72px",
+        "80": "80px",
+
+      },
+      lineHeight: {
+        '22': "22px",
+        '26': "26px",
+        '28': "28px",
+        '30': "30px",
+        '32': "32px",
+        '34': "34px",
+        '38': "38px",
+        '40': "40px",
+        '44': "44px",
+        '58': "58px",
+        '76': "76px",
+        '84': "84px",
+        '96': "96px",
+      }
     },
   },
   plugins: [],

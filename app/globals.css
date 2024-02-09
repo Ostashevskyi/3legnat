@@ -1,3 +1,156 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary_black: #000000;
+  --secondary_blue: #377dff;
+  --secondary_green: #38cb89;
+  --secondary_orange: #ffab00;
+  --secondary_red: #ff5630;
+  --neutral_07: #141718;
+  --neutral_06: #232627;
+  --neutral_05: #343839;
+  --neutral_04: #6c7275;
+  --neutral_03: #e8ecef;
+  --neutral_02: #f3f5f7;
+  --neutral_01: #fefefe;
+}
+
+@layer base {
+  ._based {
+    @apply font-poppins font-medium tracking-tighter;
+  }
+  .hero {
+    @apply _based text-8xl leading-96;
+  }
+  h1 {
+    @apply _based text-80 leading-84;
+  }
+  h2 {
+    @apply _based text-72 leading-76;
+  }
+  h3 {
+    @apply _based text-54 leading-58;
+  }
+  h4 {
+    @apply _based text-40 leading-44;
+  }
+  h5 {
+    @apply _based text-34 leading-38;
+  }
+  h6 {
+    @apply _based text-28 leading-34;
+  }
+  .h7 {
+    @apply _based text-20 leading-28;
+  }
+}
+
+@layer utilities {
+  ._26 {
+    @apply text-26 leading-40;
+  }
+  ._22 {
+    @apply text-22 leading-34;
+  }
+  ._20 {
+    @apply text-20 leading-32;
+  }
+  ._18 {
+    @apply text-lg leading-30;
+  }
+  ._16 {
+    @apply text-base leading-26;
+  }
+  ._14 {
+    @apply text-sm leading-22;
+  }
+  ._12 {
+    @apply text-xs leading-5;
+  }
+
+  ._normal {
+    @apply font-normal;
+  }
+
+  ._semibold {
+    @apply font-semibold;
+  }
+
+  ._bold {
+    @apply font-bold;
+  }
+
+  /* regular */
+  .regular-26 {
+    @apply _26 _normal;
+  }
+  .regular-22 {
+    @apply _22 _normal;
+  }
+  .regular-20 {
+    @apply _20 _normal;
+  }
+  .regular-18 {
+    @apply _18 _normal;
+  }
+  .regular-16 {
+    @apply _16 _normal;
+  }
+  .regular-14 {
+    @apply _14 _normal;
+  }
+  .regular-12 {
+    @apply _12 _normal;
+  }
+
+  /* semibold */
+  .semibold-26 {
+    @apply _26 _semibold;
+  }
+  .semibold-22 {
+    @apply _22 _semibold;
+  }
+  .semibold-20 {
+    @apply _20 _semibold;
+  }
+  .semibold-18 {
+    @apply _18 _semibold;
+  }
+  .semibold-16 {
+    @apply _16 _semibold;
+  }
+  .semibold-14 {
+    @apply _14 _semibold;
+  }
+  .semibold-12 {
+    @apply _12 _semibold;
+  }
+
+  /* bold */
+  .bold-26 {
+    @apply _26 _bold;
+  }
+  .bold-22 {
+    @apply _22 _bold;
+  }
+  .bold-20 {
+    @apply _20 _bold;
+  }
+  .bold-18 {
+    @apply _18 _bold;
+  }
+  .bold-16 {
+    @apply _16 _bold;
+  }
+  .bold-14 {
+    @apply _14 _bold;
+  }
+  .bold-12 {
+    @apply _12 _bold;
+  }
+}
+
+@layer components {
+}
