@@ -45,6 +45,25 @@
   .h7 {
     @apply _based text-20 leading-28;
   }
+
+  .heading1 {
+    @apply _based text-80 leading-84;
+  }
+  .heading2 {
+    @apply _based text-72 leading-76;
+  }
+  .heading3 {
+    @apply _based text-54 leading-58;
+  }
+  .heading4 {
+    @apply _based text-40 leading-44;
+  }
+  .heading5 {
+    @apply _based text-34 leading-38;
+  }
+  .heading6 {
+    @apply _based text-28 leading-34;
+  }
 }
 
 @layer utilities {
@@ -178,6 +197,10 @@
 
   .max-container {
     @apply max-w-[1120px] m-auto;
+  }
+
+  .p-mobile {
+    @apply px-4 xl:px-0;
   }
 }
 
