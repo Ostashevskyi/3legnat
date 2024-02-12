@@ -12,7 +12,7 @@ import "./index.css";
 
 const Carousel = () => {
   return (
-    <div className="p-mobile mb-8">
+    <div className="mb-8">
       <Swiper
         modules={[Pagination, Navigation]}
         pagination={{
