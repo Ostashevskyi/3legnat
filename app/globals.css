@@ -177,7 +177,7 @@
   }
 
   .max-container {
-    @apply max-w-[1440px] m-auto;
+    @apply max-w-[1120px] m-auto;
   }
 }
 

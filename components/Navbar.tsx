@@ -28,7 +28,7 @@ const Navbar = () => {
         className={
           isOpen
             ? "p-6 h-screen"
-            : "max-container py-4 grid grid-cols-1 lg:grid-cols-3 px-4"
+            : "max-container py-4 grid grid-cols-1 lg:grid-cols-3 px-4 lg:px-0"
         }
       >
         <div className="mb-4 flex justify-between items-center">
@@ -55,10 +55,12 @@ const Navbar = () => {
             {HEADER_NAV_LINKS.map((link) => {
               const isActive = pathname.startsWith(link.href);
               return (
-                <div className={isOpen ? "border-b pb-4 mb-4" : ""}>
+                <div
+                  className={isOpen ? "border-b pb-4 mb-4" : ""}
+                  key={link.id}
+                >
                   <Link
                     href={link.href}
-                    key={link.id}
                     className={
                       isActive
                         ? "text-neutral_07 semibold-body-2"
