@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import { Rating as ReactRating } from "@smastrom/react-rating";
-import { ThinRoundedStar } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
+import { ThinRoundedStar } from "@smastrom/react-rating";
+import { Rating as ReactRating } from "@smastrom/react-rating";
 
 type StarsRating = {
   readOnly: boolean;
