@@ -1,7 +1,6 @@
-import Link from "next/link";
 import React from "react";
-import ShopNow from "../Links/ShopNow";
 import Image from "next/image";
+import ArrowLink from "../Links/ArrowLink";
 
 type HeroCard = {
   variant: string;
@@ -26,7 +25,7 @@ const HeroCards = ({ variant, title, image }: HeroCard) => {
         }
       >
         <h5 className="mb-3">{title}</h5>
-        <ShopNow color={"text-black"} />
+        <ArrowLink color={"text-black"} text="Shop Now" />
       </section>
       <Image src={image} alt="section_image" width={548} height={664} />
     </div>

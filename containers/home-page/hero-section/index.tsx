@@ -1,6 +1,6 @@
 import React from "react";
-import Carousel from "./Sliders/Carousel";
-import HeroCards from "./Cards/HeroCard";
+import Carousel from "@/components/Sliders/Carousel";
+import HeroCards from "@/components/Cards/HeroCard";
 
 const Hero = () => {
   return (
