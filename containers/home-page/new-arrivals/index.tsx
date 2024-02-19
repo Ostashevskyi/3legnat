@@ -1,5 +1,5 @@
-import ProductCard from "@/components/Cards/ProductCard";
 import ArrowLink from "@/components/Links/ArrowLink";
+import ProductCardsSlider from "@/components/Sliders/ProductCardsSlider";
 import React from "react";
 
 const NewArrivals = () => {
@@ -11,9 +11,7 @@ const NewArrivals = () => {
         </h4>
         <ArrowLink color="#000000" text="More Products" />
       </section>
-      <div className="flex">
-        <ProductCard />
-      </div>
+      <ProductCardsSlider />
     </div>
   );
 };

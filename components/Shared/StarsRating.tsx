@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import { Rating as ReactRating } from "@smastrom/react-rating";
 import { ThinRoundedStar } from "@smastrom/react-rating";
 
+import "@smastrom/react-rating/style.css";
+
 type StarsRating = {
   readOnly: boolean;
 };

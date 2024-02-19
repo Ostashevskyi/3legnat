@@ -10,13 +10,14 @@ import "swiper/css/scrollbar";
 const ProductCardsSlider = () => {
   return (
     <Swiper
-      className="product-slider"
+      className="product-slider mb-12"
       scrollbar={{
         draggable: true,
       }}
       breakpoints={{
         320: { slidesPerView: 1.5 },
-        768: { slidesPerView: 3 },
+        550: { slidesPerView: 2 },
+        700: { slidesPerView: 3 },
         1024: { slidesPerView: 4.5 },
       }}
       modules={[Scrollbar]}
