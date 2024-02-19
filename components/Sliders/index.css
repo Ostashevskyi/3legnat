@@ -1,3 +1,5 @@
+/* Carousel */
+
 .hero-slider .swiper-button-next,
 .swiper-button-prev {
   color: black;
@@ -38,4 +40,11 @@
 .hero-slider .swiper-pagination-bullet.swiper-pagination-bullet-active {
   width: 30px;
   border-radius: 6px;
+}
+
+/* Product Cards Slider */
+
+.product-slider .swiper-scrollbar.swiper-scrollbar-horizontal {
+  position: inherit;
+  margin-top: 50px;
 }

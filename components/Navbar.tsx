@@ -6,9 +6,9 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Squash as Hamburger } from "hamburger-react";
 
-import Counter from "./Counter";
-import Discount from "./Discount";
-import SearchInput from "./SearchInput";
+import Counter from "@/components/Shared/Counter";
+import Discount from "@/components/Shared/Discount";
+import SearchInput from "@/components/Inputs/SearchInput";
 
 import {
   HEADER_NAV_ICONS,

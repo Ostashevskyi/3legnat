@@ -5,8 +5,17 @@ const config: Config = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./containers/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'xs': "320px",
+      'sm': "425px",
+      'md': '768px',
+      "lg": '1024px',
+      'xl': '1440px',
+      'xxxl': '1920px'
+    },
     extend: {
       colors: {
         primary_black: "var(--primary_black)",
@@ -39,6 +48,7 @@ const config: Config = {
 
       },
       lineHeight: {
+        '14': "14px",
         '22': "22px",
         '26': "26px",
         '28': "28px",

@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import ShopNow from "./Links/ShopNow";
 
 const Discount = () => {
   return (
@@ -15,7 +14,12 @@ const Discount = () => {
         />
         <p className="semibold-caption-1">30% off storewide — Limited time! </p>
         <span className="hidden lg:flex">
-          <ShopNow color="text-secondary_blue" />
+          <Link
+            color="text-secondary_blue buttonXS-text hover:underline"
+            href={"/"}
+          >
+            Shop Now
+          </Link>
         </span>
       </div>
       <div>
