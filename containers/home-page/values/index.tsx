@@ -3,7 +3,7 @@ import React from "react";
 
 const Values = () => {
   return (
-    <div className="p-mobile flex flex-wrap gap-2 justify-center lg:gap-6">
+    <div className="p-mobile max-container flex flex-wrap gap-2 justify-center lg:gap-6">
       <ValuesCard />
       <ValuesCard />
       <ValuesCard />

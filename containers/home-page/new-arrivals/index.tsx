@@ -4,7 +4,7 @@ import React from "react";
 
 const NewArrivals = () => {
   return (
-    <div className="p-mobile">
+    <div className="p-mobile max-container">
       <section className="flex justify-between items-end mb-12">
         <h4>
           New <br /> Arrivals
