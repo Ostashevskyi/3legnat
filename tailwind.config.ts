@@ -17,6 +17,9 @@ const config: Config = {
       'xxxl': '1920px'
     },
     extend: {
+      backgroundImage: {
+        'newsletter-bg': "url('/newsletter-bg.png')",
+      },
       colors: {
         primary_black: "var(--primary_black)",
         secondary_blue: "var(--secondary_blue)",
