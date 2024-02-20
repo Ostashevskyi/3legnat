@@ -4,7 +4,7 @@ import HeroCards from "@/components/Cards/HeroCard";
 
 const Hero = () => {
   return (
-    <div className="p-mobile">
+    <div className="p-mobile max-container">
       <Carousel />
 
       <section className="flex items-center justify-between flex-wrap mb-10">

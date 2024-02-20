@@ -49,6 +49,7 @@ const config: Config = {
       },
       lineHeight: {
         '14': "14px",
+        '16': "16px",
         '22': "22px",
         '26': "26px",
         '28': "28px",

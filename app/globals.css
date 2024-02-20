@@ -199,6 +199,10 @@
     @apply max-w-[1120px] m-auto;
   }
 
+  .min-container {
+    @apply max-w-[1420px] m-auto;
+  }
+
   .p-mobile {
     @apply px-4 xl:px-0;
   }
