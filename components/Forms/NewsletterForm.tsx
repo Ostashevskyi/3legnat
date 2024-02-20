@@ -18,7 +18,7 @@ const NewsletterForm = () => {
         placeholder="Email address"
         className="bg-transparent outline-none max-w-[180px] sm:max-lg:max-w-fit lg:min-w-[396px] placeholder:text-neutral_04"
       />
-      <input type="submit" value={"Signup"} />
+      <input type="submit" value={"Signup"} className="cursor-pointer" />
     </form>
   );
 };
