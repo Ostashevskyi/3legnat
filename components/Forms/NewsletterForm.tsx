@@ -1,9 +1,9 @@
 "use client";
 import Image from "next/image";
-import React, { FormEvent } from "react";
+import React from "react";
 
 const NewsletterForm = () => {
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
 
