@@ -20,6 +20,7 @@ const config: Config = {
       backgroundImage: {
         "newsletter-bg": "url('/newsletter-bg.png')",
         "auth-bg": "url('/auth-bg.png')",
+        "shop-bg": "url('/shop-bg.png')",
       },
       colors: {
         primary_black: "var(--primary_black)",
