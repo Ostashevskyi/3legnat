@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Link from "next/link";
 import Image from "next/image";
@@ -15,13 +15,20 @@ import {
   HEADER_NAV_LINKS,
   HEADER_OPEN_ICON,
 } from "@/utils/constants";
+import DarkButton from "./Buttons/DarkButton";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    isOpen
+      ? document.documentElement.classList.add("disabled")
+      : document.documentElement.classList.remove("disabled");
+  }, [isOpen]);
+
   return (
-    <div>
+    <div className="mb-4">
       {!isOpen && <Discount />}
 
       <nav
@@ -31,7 +38,7 @@ const Navbar = () => {
             : "max-container py-4 grid grid-cols-1 lg:grid-cols-3 p-mobile"
         }
       >
-        <div className="mb-4 flex justify-between items-center">
+        <div className="flex justify-between items-center">
           <Image
             src={"/logo.png"}
             alt="logo"
@@ -59,16 +66,18 @@ const Navbar = () => {
                   className={isOpen ? "border-b pb-4 mb-4" : ""}
                   key={link.id}
                 >
-                  <Link
-                    href={link.href}
-                    className={
-                      isActive
-                        ? "text-neutral_07 semibold-body-2"
-                        : "text-neutral_04 semibold-body-2"
-                    }
-                  >
-                    {link.title}
-                  </Link>
+                  <button onClick={() => setIsOpen(!isOpen)}>
+                    <Link
+                      href={link.href}
+                      className={
+                        isActive
+                          ? "text-neutral_07 semibold-body-2"
+                          : "text-neutral_04 semibold-body-2"
+                      }
+                    >
+                      {link.title}
+                    </Link>
+                  </button>
                 </div>
               );
             })}
@@ -109,9 +118,9 @@ const Navbar = () => {
                   </div>
                 ))}
               </ul>
-              <button className="py-2 w-full rounded-md border bg-black text-white mb-3">
-                Sign In
-              </button>
+              <DarkButton>
+                <Link href={"/"}>Sign In</Link>
+              </DarkButton>
               <div className="flex gap-6">
                 <Image
                   src={"/icons/instagram.svg"}

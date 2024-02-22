@@ -200,7 +200,7 @@
   }
 
   .min-container {
-    @apply max-w-[1420px] m-auto;
+    @apply max-w-[1440px] m-auto;
   }
 
   .p-mobile {
@@ -209,4 +209,8 @@
 }
 
 @layer components {
+}
+
+.disabled {
+  overflow: hidden;
 }
