@@ -5,8 +5,9 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
 import StarsRating from "@/components/Shared/StarsRating";
+import type { TProduct } from "@/types/ProductType";
 
-const ProductCard = () => {
+const ProductCard = ({ product }: { product: TProduct }) => {
   const isNew = true;
   const isSale = true;
   const saleAmount = 50;
@@ -34,7 +35,7 @@ const ProductCard = () => {
       >
         <Image
           alt="product-image"
-          src={"/product-image.png"}
+          src={product.mainPhoto?.url}
           width={262}
           height={349}
         />
