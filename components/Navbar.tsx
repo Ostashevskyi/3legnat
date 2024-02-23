@@ -53,7 +53,7 @@ const Navbar = () => {
         <div
           className={
             isOpen
-              ? "flex flex-col justify-between h-[90%]"
+              ? "flex flex-col justify-between h-[90%] "
               : "flex items-center justify-between col-span-2"
           }
         >
@@ -66,7 +66,7 @@ const Navbar = () => {
                   className={isOpen ? "border-b pb-4 mb-4" : ""}
                   key={link.id}
                 >
-                  <button onClick={() => setIsOpen(!isOpen)}>
+                  <button onClick={() => setIsOpen(false)}>
                     <Link
                       href={link.href}
                       className={

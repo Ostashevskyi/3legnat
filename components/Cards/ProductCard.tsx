@@ -1,6 +1,9 @@
 "use client";
+import React, { useEffect, useState } from "react";
+
 import Image from "next/image";
-import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
+
 import StarsRating from "@/components/Shared/StarsRating";
 
 const ProductCard = () => {
@@ -9,9 +12,21 @@ const ProductCard = () => {
   const saleAmount = 50;
 
   const [isOver, setIsOver] = useState(false);
+  const [grid, setGrid] = useState<unknown>();
+
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    setGrid(searchParams.get("grid"));
+  }, [searchParams.get("grid")]);
 
   return (
-    <div>
+    // here
+    <div
+      className={`w-fit ${
+        grid === "row" && " md:flex md:items-center md:gap-10 lg:gap-20"
+      }`}
+    >
       <div
         className="mb-3 relative w-fit"
         onMouseEnter={() => setIsOver(!isOver)}
@@ -48,8 +63,9 @@ const ProductCard = () => {
           </div>
         </div>
 
+        {/* here */}
         {isOver && (
-          <button className="max-w-[200px] w-full h-11 rounded-md bg-black text-white absolute m-auto left-0 right-0 bottom-4">
+          <button className="max-w-[85%] w-full h-11 rounded-md bg-black text-white absolute m-auto left-0 right-0 bottom-4">
             Add to cart
           </button>
         )}
