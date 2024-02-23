@@ -60,7 +60,6 @@ const Navbar = () => {
           <ul className={isOpen ? "flex flex-col" : "hidden lg:flex gap-10"}>
             {isOpen && <SearchInput />}
             {HEADER_NAV_LINKS.map((link) => {
-              const isActive = pathname.startsWith(link.href);
               return (
                 <div
                   className={isOpen ? "border-b pb-4 mb-4" : ""}
@@ -70,7 +69,7 @@ const Navbar = () => {
                     <Link
                       href={link.href}
                       className={
-                        isActive
+                        pathname === link.href
                           ? "text-neutral_07 semibold-body-2"
                           : "text-neutral_04 semibold-body-2"
                       }
