@@ -23,7 +23,7 @@ const ProductCardsSlider = () => {
       modules={[Scrollbar]}
       spaceBetween={24}
     >
-      <SwiperSlide>
+      {/* <SwiperSlide>
         <ProductCard />
       </SwiperSlide>
       <SwiperSlide>
@@ -43,7 +43,7 @@ const ProductCardsSlider = () => {
       </SwiperSlide>
       <SwiperSlide>
         <ProductCard />
-      </SwiperSlide>
+      </SwiperSlide> */}
     </Swiper>
   );
 };
