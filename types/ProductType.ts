@@ -7,5 +7,6 @@ export type TProduct = {
   oldPrice: number;
   onsale: boolean;
   price: number;
+  category: string;
   slug: string;
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import CardSection from "./CardSection";
 import { performRequest } from "@/lib/datocms";
-import type { TProduct } from "@/types/ProductType";
 
 const PRODUCTS = `
 query Products {
@@ -18,6 +17,7 @@ query Products {
     oldPrice
     onsale
     price
+    category
     slug
   }
 }`;

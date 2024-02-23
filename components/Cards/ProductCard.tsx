@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 
 import StarsRating from "@/components/Shared/StarsRating";
 import type { TProduct } from "@/types/ProductType";
+import Link from "next/link";
 
 const ProductCard = ({ product }: { product: TProduct }) => {
   const isNew = true;
@@ -23,7 +24,8 @@ const ProductCard = ({ product }: { product: TProduct }) => {
 
   return (
     // here
-    <div
+    <Link
+      href={`/shop/${product.slug}`}
       className={`w-fit ${
         grid === "row" && " md:flex md:items-center md:gap-10 lg:gap-20"
       }`}
@@ -35,7 +37,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
       >
         <Image
           alt="product-image"
-          src={product.mainPhoto?.url}
+          src={product.mainPhoto.url}
           width={262}
           height={349}
         />
@@ -76,7 +78,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
         <p className="semibold-body-2 my-1">Loveseat Sofa</p>
         <p className="semibold-caption-1">$199.00</p>
       </div>
-    </div>
+    </Link>
   );
 };
 
