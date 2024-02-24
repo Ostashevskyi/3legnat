@@ -4,6 +4,7 @@ import ProductHeader from "@/containers/product-page/header";
 
 import { performRequest } from "@/lib/datocms";
 import Link from "next/link";
+import ProductInfo from "@/containers/product-page/productInfo";
 
 const PRODUCT = `
 query Product($slug: String) {
@@ -21,6 +22,13 @@ query Product($slug: String) {
       height
       width
     }
+    colors {
+      alt
+      customData
+      url
+      width
+      height
+    }
     measurements
     oldPrice
     onsale
@@ -28,6 +36,7 @@ query Product($slug: String) {
     price
     category
     slug
+    sku
   }
 }`;
 
@@ -38,7 +47,10 @@ const ProductPage = async ({
 }) => {
   const {
     data: { product },
-  } = await performRequest({ query: PRODUCT, variables: { slug: slug } });
+  } = await performRequest({
+    query: PRODUCT,
+    variables: { slug: slug },
+  });
 
   const { title } = product;
   return (
@@ -48,24 +60,9 @@ const ProductPage = async ({
         <Link href={"/shop"}>{"Shop >"}</Link>
         <p className="text-black/90">{title}</p>
       </div>
-      <div className="flex">
-        <div>
-          <ProductHeader productInfo={product} />
-        </div>
-        <div className="flex-2">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-            voluptatem, cupiditate reprehenderit unde iusto veritatis culpa
-            repellat molestiae enim cumque sit dolores, est sunt, maiores labore
-            maxime nam quo sint.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-            voluptatem, cupiditate reprehenderit unde iusto veritatis culpa
-            repellat molestiae enim cumque sit dolores, est sunt, maiores labore
-            maxime nam quo sint.
-          </p>
-        </div>
+      <div className="lg:flex">
+        <ProductHeader productInfo={product} />
+        <ProductInfo productInfo={product} />
       </div>
     </div>
   );

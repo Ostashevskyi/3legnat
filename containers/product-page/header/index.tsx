@@ -9,11 +9,7 @@ const ProductHeader = ({ productInfo }: { productInfo: TProduct }) => {
 
   const allPhotos = [mainPhoto, ...additionalPhoto];
 
-  return (
-    <div>
-      <ProductPageSlider photos={allPhotos} />
-    </div>
-  );
+  return <ProductPageSlider photos={allPhotos} />;
 };
 
 export default ProductHeader;

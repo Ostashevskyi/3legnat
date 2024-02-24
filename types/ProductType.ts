@@ -4,11 +4,21 @@ export type TProduct = {
   description: string;
   mainPhoto: { url: string; height: number; width: number };
   additionalPhoto: [{ url: string; height: number; width: number }];
+  colors: [
+    {
+      url: string;
+      height: number;
+      width: number;
+      alt: string;
+      customData: { color: string };
+    }
+  ];
   measurements: string;
-  oldPrice: number;
+  oldPrice?: number;
   onsale: boolean;
-  discountNumber: number;
+  discountNumber?: number;
   price: number;
   category: string;
   slug: string;
+  sku: number;
 };

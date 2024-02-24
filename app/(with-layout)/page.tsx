@@ -5,23 +5,7 @@ import Hero from "@/containers/home-page/hero-section";
 import Newsletter from "@/containers/home-page/newsletter";
 import NewArrivals from "@/containers/home-page/new-arrivals";
 
-import { performRequest } from "@/lib/datocms";
-
-const PAGE_CONTENT_QUERY = `
-  query HOME {
-    allProducts {
-      title
-      id
-    }
-  }
-`;
-
 export default async function Home() {
-  const {
-    data: { allProducts },
-  } = await performRequest({ query: PAGE_CONTENT_QUERY });
-  console.log(allProducts);
-
   return (
     <div>
       <Hero />

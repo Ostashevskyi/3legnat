@@ -18,7 +18,7 @@ type TPhotos = {
 
 const ProductPageSlider = ({ photos }: { photos: TPhotos[] }) => {
   return (
-    <div className="">
+    <div className="p-mobile">
       <Swiper
         spaceBetween={24}
         className="product-page-slider mb-4 max-w-[548px]"
