@@ -1,18 +1,11 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 
 const ReviewsFilterDropdown = () => {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const { replace } = useRouter();
-
-  useEffect(() => {
-    const params = new URLSearchParams(searchParams);
-    params.set("reviewSort", "newest");
-
-    replace(`${pathname}?${params.toString()}`);
-  }, []);
 
   const handleChange = (sort: string) => {
     const params = new URLSearchParams(searchParams);
@@ -30,7 +23,7 @@ const ReviewsFilterDropdown = () => {
     <select
       defaultValue={"newest"}
       onChange={(e) => handleChange(e.target.value)}
-      className="border w-full py-3 px-4 rounded-md mb-10"
+      className="border w-full py-3 px-4 rounded-md mb-10 lg:max-w-[256px]"
     >
       <option value="newest">Newest</option>
       <option value="higher">Higher rating</option>

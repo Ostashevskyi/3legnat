@@ -2,7 +2,7 @@ import React from "react";
 import AccordionItem from "./AccordionItem";
 import Reviews from "@/containers/product-page/reviews";
 
-type ProductPageAccordionProps = {
+export type ProductPageAccordionProps = {
   additionalInfo: string;
 };
 

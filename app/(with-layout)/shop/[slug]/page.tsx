@@ -6,6 +6,7 @@ import { performRequest } from "@/lib/datocms";
 import Link from "next/link";
 import ProductInfo from "@/containers/product-page/productInfo";
 import Newsletter from "@/components/Newsletter";
+import AdditionalInfo from "@/containers/product-page/additionalInfoDesktop";
 
 const PRODUCT = `
 query Product($slug: String) {
@@ -54,7 +55,7 @@ const ProductPage = async ({
     variables: { slug: slug },
   });
 
-  const { title } = product;
+  const { title, additionalInfo } = product;
   return (
     <div>
       <div className="max-container">
@@ -66,6 +67,9 @@ const ProductPage = async ({
         <div className="lg:flex xl:gap-16">
           <ProductHeader productInfo={product} />
           <ProductInfo productInfo={product} />
+        </div>
+        <div className="hidden lg:block p-mobile mb-10">
+          <AdditionalInfo additionalInfo={additionalInfo} />
         </div>
       </div>
       <Newsletter />

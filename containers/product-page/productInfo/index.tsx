@@ -60,7 +60,9 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
         <p className="uppercase text-neutral_04">Category</p>
         <p>{category}</p>
       </div>
-      <ProductPageAccordion additionalInfo={additionalInfo} />
+      <div className="lg:hidden mb-10">
+        <ProductPageAccordion additionalInfo={additionalInfo} />
+      </div>
     </section>
   );
 };

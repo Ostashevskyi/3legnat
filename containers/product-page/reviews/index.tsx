@@ -15,11 +15,11 @@ const Reviews = () => {
         </div>
         <ReviewsInput />
       </div>
-      <div>
+      <div className="lg:flex lg:justify-between">
         <h6 className="mb-4">0 Reviews</h6>
         <ReviewsFilterDropdown />
-        <ReviewTemplate />
       </div>
+      <ReviewTemplate />
       <div className="flex justify-center">
         <ShowMoreButton>Load More</ShowMoreButton>
       </div>
