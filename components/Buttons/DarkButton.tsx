@@ -1,8 +1,18 @@
 import React from "react";
 
-const DarkButton = ({ children }: { children: React.ReactNode }) => {
+const DarkButton = ({
+  children,
+  rounded,
+}: {
+  children: React.ReactNode;
+  rounded?: boolean;
+}) => {
   return (
-    <button className="w-full min-h-12 bg-neutral_07 rounded-md text-white ">
+    <button
+      className={`w-full min-h-12 bg-neutral_07 ${
+        rounded ? "rounded-full" : "rounded-md"
+      } text-white`}
+    >
       {children}
     </button>
   );

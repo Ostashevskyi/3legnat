@@ -43,7 +43,7 @@ const CartSlider = ({ title }: { title: string }) => {
   return (
     <div>
       <Swiper
-        slidesPerView={1.5}
+        slidesPerView={1}
         spaceBetween={45}
         breakpoints={{ 700: { slidesPerView: 3 } }}
       >

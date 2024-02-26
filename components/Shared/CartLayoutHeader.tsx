@@ -15,7 +15,7 @@ const CartLayoutHeader = () => {
       case "/checkout":
         setTitle("Check Out");
         break;
-      case "/oreder-complete":
+      case "/order-complete":
         setTitle("Complete!");
         break;
       default:
