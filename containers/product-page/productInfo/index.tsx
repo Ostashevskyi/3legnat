@@ -49,7 +49,7 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
       <ChooseColor colors={colors} />
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <QuantityButton />
+          <QuantityButton number={1} bg="gray" />
           <WishlistButton />
         </div>
         <DarkButton>Add to Cart</DarkButton>
