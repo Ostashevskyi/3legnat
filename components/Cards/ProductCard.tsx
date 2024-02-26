@@ -5,8 +5,10 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
 import StarsRating from "@/components/Shared/StarsRating";
+import type { TProduct } from "@/types/ProductType";
+import Link from "next/link";
 
-const ProductCard = () => {
+const ProductCard = ({ product }: { product: TProduct }) => {
   const isNew = true;
   const isSale = true;
   const saleAmount = 50;
@@ -22,7 +24,8 @@ const ProductCard = () => {
 
   return (
     // here
-    <div
+    <Link
+      href={`/shop/${product.slug}`}
       className={`w-fit ${
         grid === "row" && " md:flex md:items-center md:gap-10 lg:gap-20"
       }`}
@@ -34,7 +37,7 @@ const ProductCard = () => {
       >
         <Image
           alt="product-image"
-          src={"/product-image.png"}
+          src={product.mainPhoto.url}
           width={262}
           height={349}
         />
@@ -75,7 +78,7 @@ const ProductCard = () => {
         <p className="semibold-body-2 my-1">Loveseat Sofa</p>
         <p className="semibold-caption-1">$199.00</p>
       </div>
-    </div>
+    </Link>
   );
 };
 

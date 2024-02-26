@@ -1,3 +1,20 @@
+/* General */
+
+.swiper-button-next {
+  color: transparent !important;
+  background-image: url("/arrow-left.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.swiper-button-prev {
+  color: transparent !important;
+  background-image: url("/arrow-left.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: rotate(180deg);
+}
+
 /* Carousel */
 
 .hero-slider .swiper-button-next,
@@ -21,7 +38,7 @@
 }
 
 .hero-slider .swiper-button-next::after,
-.swiper-button-prev::after {
+.hero-slider .swiper-button-prev::after {
   font-size: 16px;
 }
 
@@ -47,4 +64,31 @@
 .product-slider .swiper-scrollbar.swiper-scrollbar-horizontal {
   position: inherit;
   margin-top: 50px;
+}
+
+/* Product Page Slider */
+
+.product-page-slider .swiper-button-next,
+.product-page-slider .swiper-button-prev {
+  color: black;
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+.product-page-slider .swiper-button-next {
+  margin-right: 24px;
+}
+
+.product-page-slider .swiper-button-prev {
+  margin-left: 24px;
+}
+
+.product-page-slider .swiper-button-next::after,
+.product-page-slider .swiper-button-prev::after {
+  font-size: 24px;
 }

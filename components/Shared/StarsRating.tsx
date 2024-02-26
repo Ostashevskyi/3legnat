@@ -6,7 +6,7 @@ import { ThinRoundedStar } from "@smastrom/react-rating";
 import { Rating as ReactRating } from "@smastrom/react-rating";
 
 type StarsRating = {
-  readOnly: boolean;
+  readOnly?: boolean;
 };
 
 const StarsRating = ({ readOnly }: StarsRating) => {
@@ -16,7 +16,7 @@ const StarsRating = ({ readOnly }: StarsRating) => {
     itemShapes: ThinRoundedStar,
     activeStrokeColor: "#000",
     activeFillColor: "#000",
-    inactiveFillColor: "#000",
+    inactiveFillColor: "#fff",
     inactiveStrokeColor: "#000",
     itemStrokeWidth: 1,
   };
