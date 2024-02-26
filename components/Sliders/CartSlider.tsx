@@ -13,23 +13,25 @@ type SliderContentProps = {
 };
 
 const SliderContent = ({ count, text, title, name }: SliderContentProps) => {
+  const completedStages: string[] = [];
+  const condition = completedStages.includes(name);
   return (
     <section
       className={`flex items-center gap-3 pb-6 mb-10 ${
         title === name && "border-b-2 border-black"
-      }`}
+      } ${condition && "border-b-2 border-[#38CB89]"} `}
     >
       <div
         className={`w-[42px] h-[42px]  text-white flex items-center justify-center rounded-full ${
           title === name ? "bg-black" : "bg-gray-300"
-        }`}
+        } ${condition && "bg-[#38CB89]"}`}
       >
-        <p>{count}</p>
+        <p>{condition ? "✓" : count}</p>
       </div>
       <p
         className={`semibold-body-2  ${
           title === name ? "text-black" : "text-gray-300"
-        }`}
+        } ${condition && "text-[#38CB89]"}`}
       >
         {text}
       </p>

@@ -22,7 +22,7 @@ const CartCard = () => {
       </div>
 
       {/* desktop */}
-      <div className="grid-cols-5 gap-4 items-center hidden md:grid border-b">
+      <div className="grid-cols-5 gap-4 items-center hidden md:grid border-b mb-20">
         <div className="col-span-2 flex items-center gap-4 my-6">
           <Image src={"/chair.png"} alt="chair" width={80} height={96} />
           <div className="flex flex-col gap-2">

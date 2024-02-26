@@ -25,7 +25,7 @@ const CartLayoutHeader = () => {
 
   return (
     <section className="p-mobile text-center max-w-[832px] m-auto">
-      <h3 className="mb-6">Cart</h3>
+      <h3 className="mb-6">{title}</h3>
       <CartSlider title={title} />
     </section>
   );
