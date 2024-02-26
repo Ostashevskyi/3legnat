@@ -5,6 +5,7 @@ import ProductHeader from "@/containers/product-page/header";
 import { performRequest } from "@/lib/datocms";
 import Link from "next/link";
 import ProductInfo from "@/containers/product-page/productInfo";
+import Newsletter from "@/components/Newsletter";
 
 const PRODUCT = `
 query Product($slug: String) {
@@ -29,6 +30,7 @@ query Product($slug: String) {
       width
       height
     }
+    additionalInfo
     measurements
     oldPrice
     onsale
@@ -54,16 +56,19 @@ const ProductPage = async ({
 
   const { title } = product;
   return (
-    <div className="max-container">
-      <div className="flex gap-2 semibold-caption-1 text-black/60 mb-4 p-mobile">
-        <Link href={"/"}>{"Home >"}</Link>
-        <Link href={"/shop"}>{"Shop >"}</Link>
-        <p className="text-black/90">{title}</p>
+    <div>
+      <div className="max-container">
+        <div className="flex gap-2 semibold-caption-1 text-black/60 mb-4 p-mobile">
+          <Link href={"/"}>{"Home >"}</Link>
+          <Link href={"/shop"}>{"Shop >"}</Link>
+          <p className="text-black/90">{title}</p>
+        </div>
+        <div className="lg:flex xl:gap-16">
+          <ProductHeader productInfo={product} />
+          <ProductInfo productInfo={product} />
+        </div>
       </div>
-      <div className="lg:flex">
-        <ProductHeader productInfo={product} />
-        <ProductInfo productInfo={product} />
-      </div>
+      <Newsletter />
     </div>
   );
 };

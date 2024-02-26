@@ -1,9 +1,10 @@
+import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
 import DarkButton from "@/components/Buttons/DarkButton";
 import QuantityButton from "@/components/Buttons/QuantityButton";
 import WishlistButton from "@/components/Buttons/WishlistButton";
 import ChooseColor from "@/components/Shared/ChooseColor";
 import StarsRating from "@/components/Shared/StarsRating";
-import Timer from "@/components/Shared/Timer";
+import Timer from "@/components/Timer/Timer";
 import { TProduct } from "@/types/ProductType";
 import React from "react";
 
@@ -17,13 +18,14 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
     colors,
     sku,
     category,
+    additionalInfo,
   } = productInfo;
   return (
     <section className="p-mobile">
       <div className="mb-6">
         <div className="flex gap-3 items-center mb-4">
           <StarsRating readOnly />
-          <span className="regular-caption-2">0 reviews</span>
+          <span className="regular-caption-2">0 Reviews</span>
         </div>
         <div className="flex flex-col gap-4">
           <h4>{title}</h4>
@@ -58,6 +60,7 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
         <p className="uppercase text-neutral_04">Category</p>
         <p>{category}</p>
       </div>
+      <ProductPageAccordion additionalInfo={additionalInfo} />
     </section>
   );
 };

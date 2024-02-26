@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import TimerNumber from "./TimerNumber";
+import TimerNumber from "@/components/Timer/TimerNumber";
 
 const Timer: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState<number>(3 * 24 * 60 * 60); // 3 days in seconds

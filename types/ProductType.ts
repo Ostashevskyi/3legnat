@@ -13,6 +13,7 @@ export type TProduct = {
       customData: { color: string };
     }
   ];
+  additionalInfo: string;
   measurements: string;
   oldPrice?: number;
   onsale: boolean;

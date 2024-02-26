@@ -1,5 +1,5 @@
 import ShowMoreButton from "@/components/Buttons/ShowMoreButton";
-import Newsletter from "@/containers/home-page/newsletter";
+import Newsletter from "@/components/Newsletter";
 import Filters from "@/containers/shop/filters";
 import ProductsSection from "@/containers/shop/products";
 import ShopHeader from "@/containers/shop/shop-header";
