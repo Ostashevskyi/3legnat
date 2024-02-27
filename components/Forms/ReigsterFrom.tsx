@@ -18,13 +18,37 @@ const RegisterForm = () => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm<TRegisterSchema>({
     resolver: zodResolver(registerSchema),
   });
 
-  const onSubmit = (data: TRegisterSchema) => {
-    console.log(data);
+  const onSubmit = async (data: TRegisterSchema) => {
+    const { name, username, email, password } = data;
+
+    try {
+      const res = await fetch("api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          username,
+          email,
+          password,
+        }),
+      });
+
+      if (res.ok) {
+        reset();
+      } else {
+        console.log("user registration failed");
+      }
+    } catch (error) {
+      console.log("Error during registration", error);
+    }
   };
 
   return (
@@ -88,7 +112,7 @@ const RegisterForm = () => {
         <div className="flex justify-between items-center">
           <div className="flex gap-3 items-center">
             <input
-              {...register("priracyPolicy")}
+              // {...register("priracyPolicy")}
               type="checkbox"
               name="remember"
               className="w-6 h-6 "
@@ -108,9 +132,9 @@ const RegisterForm = () => {
             </label>
           </div>
         </div>
-        {errors.priracyPolicy && (
+        {/* {errors.priracyPolicy && (
           <ErrorMessage>{errors.priracyPolicy.message}</ErrorMessage>
-        )}
+        )} */}
       </div>
 
       <DarkButton>Sign Up</DarkButton>

@@ -6,11 +6,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
 
 import { TLoginSchema, loginSchema } from "@/lib/zodSchema/login";
 
 import DarkButton from "@/components/Buttons/DarkButton";
 import ErrorMessage from "../Shared/ErrorMessage";
+
+type TCredentials = {
+  email: string;
+  password: string;
+};
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -23,8 +29,21 @@ const LoginForm = () => {
     resolver: zodResolver(loginSchema),
   });
 
-  const onSubmit = (data: TLoginSchema) => {
-    console.log(data);
+  const onSubmit = async (data: TLoginSchema) => {
+    try {
+      const credentials: TCredentials = {
+        email: data.email,
+        password: data.password,
+      };
+
+      const res = await signIn("credentials", credentials);
+
+      if (res?.error) {
+        throw Error("Error during login");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
