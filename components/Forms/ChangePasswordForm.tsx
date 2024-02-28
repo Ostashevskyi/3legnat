@@ -9,7 +9,13 @@ import { useForm } from "react-hook-form";
 import ErrorMessage from "../Shared/ErrorMessage";
 import DarkButton from "../Buttons/DarkButton";
 
-const ChangePasswordForm = () => {
+const ChangePasswordForm = ({
+  password,
+  id,
+}: {
+  password: string;
+  id: number;
+}) => {
   const {
     handleSubmit,
     register,
@@ -18,8 +24,25 @@ const ChangePasswordForm = () => {
     resolver: zodResolver(changePasswordSchema),
   });
 
-  const onSubmit = (data: TChangePasswordSchema) => {
-    console.log(data);
+  const onSubmit = async (data: TChangePasswordSchema) => {
+    const { oldPassword, newPassword } = data;
+
+    try {
+      await fetch("/api/changePassword", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          oldPassword,
+          currentPassword: password,
+          newPassword,
+          id,
+        }),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

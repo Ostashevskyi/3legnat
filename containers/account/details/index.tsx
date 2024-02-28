@@ -19,6 +19,8 @@ type TUserData = {
   };
 };
 
+export const dynamic = "force-dynamic";
+
 const getUserDataById = async () => {
   const session = await getServerSession(options);
   const res = await fetch(
@@ -45,7 +47,7 @@ const AccountDetails = async () => {
   return (
     <section className="p-mobile flex flex-col gap-10">
       <AccountDetailsForm userData={userData} />
-      <ChangePasswordForm />
+      <ChangePasswordForm password={userData.password} id={userData.id} />
     </section>
   );
 };
