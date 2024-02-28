@@ -7,12 +7,11 @@ import AccountDropdown from "@/components/Dropdowns/AccountDropdown";
 const LayoutMenu = async () => {
   const session = await getServerSession(options);
   return (
-    <section>
+    <section className="p-mobile">
       <h4 className="lg:text-54 lg:leading-58 mb-10 lg:mb-20 text-center">
         My account
       </h4>
-
-      <section className="p-mobile bg-neutral_02 rounded-md  mb-10">
+      <div className=" bg-neutral_02 rounded-md mb-10">
         <div className="pt-10 flex flex-col justify-center items-center gap-1.5 pb-10">
           <Image
             src={session?.user?.image || ""}
@@ -25,7 +24,7 @@ const LayoutMenu = async () => {
         <div className="flex justify-center items-center pb-10 px-4">
           <AccountDropdown />
         </div>
-      </section>
+      </div>
     </section>
   );
 };

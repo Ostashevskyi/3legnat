@@ -35,7 +35,7 @@ const Navbar = () => {
         className={
           isOpen
             ? "p-6 h-screen"
-            : "max-container py-4 grid grid-cols-1 lg:grid-cols-3 p-mobile"
+            : "max-container py-4 grid grid-cols-1 lg:grid-cols-3 px-4"
         }
       >
         <div className="flex justify-between items-center">
