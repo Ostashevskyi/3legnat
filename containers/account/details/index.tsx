@@ -30,9 +30,7 @@ const getUserDataById = async () => {
       headers: {
         "Content-Type": "application/json",
       },
-      next: {
-        revalidate: 5000,
-      },
+      cache: "no-store",
     }
   );
 
