@@ -4,7 +4,7 @@ import React from "react";
 
 const Discount = () => {
   return (
-    <div className="min-container bg-neutral_02 py-2 flex items-center p-mobile">
+    <div className="min-container bg-neutral_02 py-2 flex items-center px-4">
       <div className="flex gap-12 justify-center items-center m-auto">
         <Image
           src={"/icons/ticket-percent.svg"}
