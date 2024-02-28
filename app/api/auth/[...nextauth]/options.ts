@@ -52,18 +52,24 @@ export const options: NextAuthOptions = {
   callbacks: {
     jwt: ({ token, user }) => {
       const u = user as unknown as User;
+
       if (user) {
         return {
           ...token,
           id: u.id,
+          username: u.username,
         };
       }
       return token;
     },
-    session: ({ session, token }) => {
+    session: ({ session, token, user }) => {
       return {
         ...session,
-        id: token.id,
+        user: {
+          ...session.user,
+          id: token.id,
+          username: token.username,
+        },
       };
     },
   },
