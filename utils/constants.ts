@@ -43,3 +43,11 @@ export const BUTTON_SIZES_BY_GRID = {
     grid: "grid-cols-6",
   },
 };
+
+export const PROFILE_LINKS = [
+  { id: 0, title: "Account", href: "/account/details" },
+  { id: 1, title: "Address", href: "/account/address" },
+  { id: 2, title: "Orders", href: "/account/orders" },
+  { id: 3, title: "Wishlist", href: "/account/wishlist" },
+  { id: 4, title: "Log out", href: "/account/logout" },
+];
