@@ -2,11 +2,11 @@ import type { NextAuthOptions } from "next-auth";
 
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import { PrismaClient, User } from "@prisma/client";
+import { User } from "@prisma/client";
 
 import { compare } from "bcrypt";
 
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/client";
 
 export const options: NextAuthOptions = {
   providers: [
@@ -58,6 +58,7 @@ export const options: NextAuthOptions = {
           ...token,
           id: u.id,
           username: u.username,
+          user_id: u.user_id,
         };
       }
       return token;
@@ -69,6 +70,7 @@ export const options: NextAuthOptions = {
           ...session.user,
           id: token.id,
           username: token.username,
+          user_id: token.user_id,
         },
       };
     },

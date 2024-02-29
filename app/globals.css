@@ -204,7 +204,7 @@
   }
 
   .p-mobile {
-    @apply mx-4 xl:mx-0;
+    @apply px-4 xl:px-0;
   }
 }
 

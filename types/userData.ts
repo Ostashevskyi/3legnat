@@ -7,5 +7,6 @@ type TUserData = {
     id: number;
     password: string;
     image: string;
+    user_id: string;
   };
 };

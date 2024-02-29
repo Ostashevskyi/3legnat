@@ -11,7 +11,7 @@ export default function AccountLayout({
       <h4 className="lg:text-54 lg:leading-58 mb-10 lg:mb-20 text-center">
         My account
       </h4>
-      <div className="lg:flex lg:gap-20">
+      <div className="lg:flex lg:gap-20 max-container">
         <LayoutMenu />
         <div className="lg:flex-1 lg:max-w-[707px]">{children}</div>
       </div>

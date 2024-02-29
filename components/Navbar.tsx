@@ -85,13 +85,14 @@ const Navbar = () => {
             <div className={"items-center gap-1 hidden lg:flex justify-end"}>
               <ul className="flex gap-4 ">
                 {HEADER_NAV_ICONS.map((icon) => (
-                  <Image
-                    src={icon.icon}
-                    key={icon.id}
-                    alt={icon.alt}
-                    width={24}
-                    height={24}
-                  />
+                  <Link key={icon.id} href={icon.href}>
+                    <Image
+                      src={icon.icon}
+                      alt={icon.alt}
+                      width={24}
+                      height={24}
+                    />
+                  </Link>
                 ))}
               </ul>
               <Counter />

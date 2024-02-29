@@ -7,9 +7,19 @@ export const HEADER_NAV_LINKS = [
 ];
 
 export const HEADER_NAV_ICONS = [
-  { id: 0, icon: "/icons/search.svg", alt: "search" },
-  { id: 1, icon: "/icons/user-circle.svg", alt: "user" },
-  { id: 3, icon: "/icons/shopping-bag.svg", alt: "shopping-bag" },
+  { id: 0, icon: "/icons/search.svg", alt: "search", href: "/search" },
+  {
+    id: 1,
+    icon: "/icons/user-circle.svg",
+    alt: "user",
+    href: "/account/details",
+  },
+  {
+    id: 3,
+    icon: "/icons/shopping-bag.svg",
+    alt: "shopping-bag",
+    href: "/cart",
+  },
 ];
 
 export const HEADER_OPEN_ICON = [
