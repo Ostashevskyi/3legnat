@@ -45,7 +45,7 @@ const AccountDetails = async () => {
   return (
     <section className="p-mobile flex flex-col gap-10">
       <AccountDetailsForm userData={userData} />
-      <ChangePasswordForm password={userData.password} id={userData.id} />
+      <ChangePasswordForm password={userData?.password} id={userData?.id} />
     </section>
   );
 };

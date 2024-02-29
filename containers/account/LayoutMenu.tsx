@@ -31,12 +31,14 @@ const LayoutMenu = async () => {
       </h4>
       <div className=" bg-neutral_02 rounded-md mb-10">
         <div className="pt-10 flex flex-col justify-center items-center gap-1.5 pb-10">
-          <Image
-            src={userData?.image || ""}
-            alt="userIcon"
-            width={80}
-            height={80}
-          />
+          <div className="flex items-end relative">
+            <Image
+              src={userData?.image || ""}
+              alt="userIcon"
+              width={80}
+              height={80}
+            />
+          </div>
           <p className="semibold-body-1">{userData?.username}</p>
         </div>
         <div className="flex justify-center items-center pb-10 px-4">
