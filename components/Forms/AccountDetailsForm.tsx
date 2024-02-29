@@ -9,7 +9,6 @@ import {
   accountDetailsSchema,
 } from "@/lib/zodSchema/account-details";
 
-import DarkButton from "@/components/Buttons/DarkButton";
 import ErrorMessage from "@/components/Shared/ErrorMessage";
 import SubmitFormInput from "../Inputs/SubmitFormInput";
 
@@ -31,15 +30,15 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
         name !== userData?.name ||
         username !== userData?.username
       ) {
-        const id = userData?.id;
+        const user_id = userData?.user_id;
 
-        const res = await fetch("/api/userinfo", {
+        await fetch("/api/userinfo", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            id,
+            user_id,
             email,
             lastName,
             name,
@@ -85,6 +84,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
           {...register("lastName", { value: userData?.lastName })}
           name="lastName"
           type="text"
+          defaultValue={userData?.lastName}
           placeholder="Last Name"
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
@@ -104,6 +104,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
           {...register("username", { value: userData?.username })}
           name="username"
           type="text"
+          defaultValue={userData?.username}
           placeholder="Display Name"
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
@@ -128,6 +129,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
           {...register("email", { value: userData?.email })}
           name="email"
           type="email"
+          defaultValue={userData?.email}
           placeholder="Email"
           className="border w-full px-4 py-2 outline-none rounded-md"
         />

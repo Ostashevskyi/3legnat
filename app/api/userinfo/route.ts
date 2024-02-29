@@ -1,16 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
-
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/client";
 
 export async function GET(req: NextRequest) {
   try {
-    const id = req.nextUrl.searchParams.get("id") as string;
+    const user_id = req.nextUrl.searchParams.get("user_id") as string;
 
     const userData = await prisma.user.findUnique({
       where: {
-        id: +id,
+        user_id,
       },
     });
 
@@ -25,11 +22,11 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: Request) {
   try {
-    const { name, username, email, lastName, id } = await req.json();
+    const { name, username, email, lastName, user_id } = await req.json();
 
     const res = await prisma.user.update({
       where: {
-        id: +id,
+        user_id,
       },
       data: {
         name,

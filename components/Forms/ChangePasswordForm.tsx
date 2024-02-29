@@ -11,14 +11,15 @@ import DarkButton from "../Buttons/DarkButton";
 
 const ChangePasswordForm = ({
   password,
-  id,
+  user_id,
 }: {
   password: string;
-  id: number;
+  user_id: string;
 }) => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors },
   } = useForm<TChangePasswordSchema>({
     resolver: zodResolver(changePasswordSchema),
@@ -28,7 +29,7 @@ const ChangePasswordForm = ({
     const { oldPassword, newPassword } = data;
 
     try {
-      await fetch("/api/changePassword", {
+      const res = await fetch("/api/changePassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,9 +38,13 @@ const ChangePasswordForm = ({
           oldPassword,
           currentPassword: password,
           newPassword,
-          id,
+          user_id,
         }),
       });
+
+      if (res.ok) {
+        reset();
+      }
     } catch (error) {
       console.log(error);
     }

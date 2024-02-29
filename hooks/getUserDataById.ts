@@ -10,13 +10,14 @@ type TUserData = {
     id: number;
     password: string;
     image: string;
+    user_id: string;
   };
 };
 
 export const getUserDataById = async () => {
   const session = await getServerSession(options);
   const res = await fetch(
-    `http://localhost:3000/api/userinfo?id=${session?.user.id}`,
+    `http://localhost:3000/api/userinfo?user_id=${session?.user.user_id}`,
     {
       method: "GET",
       headers: {
