@@ -16,6 +16,7 @@ type TUserData = {
 
 export const getUserDataById = async () => {
   const session = await getServerSession(options);
+
   const res = await fetch(
     `http://localhost:3000/api/userinfo?user_id=${session?.user.user_id}`,
     {

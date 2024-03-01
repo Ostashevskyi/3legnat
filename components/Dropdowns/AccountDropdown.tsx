@@ -19,7 +19,7 @@ const AccountDropdown = () => {
   return (
     <select
       onChange={(e) => handleChange(e.target.value)}
-      defaultValue={searchParams.get("page")?.toString()}
+      defaultValue={pathname.split("/")[2]}
       className="w-full px-4 py-3 rounded-md border-neutral_04 border-2 semibold-body-2"
     >
       <option value={"details"}>Account</option>
