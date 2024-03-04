@@ -12,11 +12,6 @@ const Cart = () => {
           <p className="hidden md:block">Price</p>
           <p className="hidden md:block">Subtotal</p>
         </div>
-        <CartCard />
-        <CartCard />
-        <CartCard />
-        <CartCard />
-        <CartCard />
       </div>
       <CartSummary />
     </section>

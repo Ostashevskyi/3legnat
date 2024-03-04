@@ -42,3 +42,14 @@ model ShippingAddress {
   email          String @unique
   user_id        String @unique @db.Uuid
 }
+
+model ShoppingCart {
+  id           Int    @id @default(autoincrement())
+  user_id      String @db.Uuid
+  product_name String
+  quantity     Int
+  price        Int
+  total_price  Int
+  color        String
+  slug         String
+}

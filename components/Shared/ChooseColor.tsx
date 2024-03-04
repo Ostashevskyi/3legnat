@@ -1,6 +1,9 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addColor } from "@/redux/slices/cartSlice";
+import { AppDispatch, useAppSelector } from "@/redux/store";
 
 type TColor = {
   customData: { color: string };
@@ -11,6 +14,7 @@ type TColor = {
 };
 
 const ChooseColor = ({ colors }: { colors: TColor[] }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [activeColor, setActiveColor] = useState<string>();
   return (
     <div className="mb-12">
@@ -22,7 +26,13 @@ const ChooseColor = ({ colors }: { colors: TColor[] }) => {
           const { color } = customData;
 
           return (
-            <button key={index} onClick={() => setActiveColor(color)}>
+            <button
+              key={index}
+              onClick={() => {
+                setActiveColor(color);
+                dispatch(addColor(color));
+              }}
+            >
               <Image
                 alt={alt}
                 src={url}

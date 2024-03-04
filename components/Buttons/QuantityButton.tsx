@@ -1,5 +1,8 @@
 "use client";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { increaseQuantity, decreaseQuantity } from "@/redux/slices/cartSlice";
+import { AppDispatch } from "@/redux/store";
 
 const QuantityButton = ({
   number,
@@ -8,6 +11,7 @@ const QuantityButton = ({
   number: number;
   bg: "white" | "gray";
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const [counter, setCounter] = useState(number);
 
   return (
@@ -19,12 +23,22 @@ const QuantityButton = ({
       <button
         className="disabled:text-gray-400"
         disabled={counter === 1}
-        onClick={() => setCounter(counter - 1)}
+        onClick={() => {
+          setCounter(counter - 1);
+          dispatch(decreaseQuantity());
+        }}
       >
         -
       </button>
       <p>{counter}</p>
-      <button onClick={() => setCounter(counter + 1)}>+</button>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+          dispatch(increaseQuantity());
+        }}
+      >
+        +
+      </button>
     </div>
   );
 };
