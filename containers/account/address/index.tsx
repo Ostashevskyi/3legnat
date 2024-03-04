@@ -7,16 +7,28 @@ import { options } from "@/app/api/auth/[...nextauth]/options";
 import { getUserBillingAddressById } from "@/hooks/getUserBillingAddressById";
 
 import BillingCard from "@/components/Cards/BillingCard";
+import ShippingCard from "@/components/Cards/ShippingCard";
+import { getUserShippingAddressById } from "@/hooks/getUserShippingAddressById";
 
 const Address = async () => {
   const session = await getServerSession(options);
   const { userBillingAddress } = await getUserBillingAddressById();
+  const { userShippingAddress } = await getUserShippingAddressById();
 
   return (
     <div className="p-mobile">
-      <p className="semibold-body-1">Address</p>
+      <p className="semibold-body-1 mb-5">Address</p>
 
-      <BillingCard userBillingAddress={userBillingAddress} session={session} />
+      <div className="flex flex-col gap-6 mb-20 xl:flex-row">
+        <BillingCard
+          userBillingAddress={userBillingAddress}
+          session={session}
+        />
+        <ShippingCard
+          session={session}
+          userShippingAddress={userShippingAddress}
+        />
+      </div>
     </div>
   );
 };

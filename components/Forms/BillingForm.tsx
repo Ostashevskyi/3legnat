@@ -5,7 +5,6 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import FormInput from "../Inputs/FormInput";
 import SubmitFormInput from "../Inputs/SubmitFormInput";
 
 import {
@@ -16,6 +15,7 @@ import {
 import { TUserBillingAddress } from "@/types/UserAddresses";
 
 import { maskCardNumber } from "@/utils/maskCardNumber";
+import ErrorMessage from "../Shared/ErrorMessage";
 
 const BillingForm = ({
   user_id,
@@ -66,46 +66,98 @@ const BillingForm = ({
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-3">
-      <FormInput
-        label="First name"
-        register={register}
-        registerLabel="first_name"
-        type="text"
-        errors={errors}
-        defaultValue={userBillingAddress?.first_name}
-      />
-      <FormInput
-        label="Last name"
-        register={register}
-        registerLabel="last_name"
-        type="text"
-        errors={errors}
-        defaultValue={userBillingAddress?.last_name}
-      />
-      <FormInput
-        label="Card number"
-        register={register}
-        registerLabel="card_number"
-        type="text"
-        errors={errors}
-        defaultValue={userBillingAddress?.card_number}
-      />
-      <FormInput
-        label="CVV"
-        register={register}
-        registerLabel="cvv"
-        type="text"
-        errors={errors}
-        defaultValue={userBillingAddress?.cvv}
-      />
-      <FormInput
-        label="Expiration Date"
-        register={register}
-        registerLabel="expiration_date"
-        type="text"
-        errors={errors}
-        defaultValue={userBillingAddress?.expiration_date}
-      />
+      <div className="flex flex-col gap-3">
+        <label
+          className="text-xs leading-3 uppercase text-neutral_04 font-bold"
+          htmlFor={"first_name"}
+        >
+          First name
+        </label>
+        <input
+          {...register("first_name")}
+          type={"text"}
+          defaultValue={userBillingAddress?.first_name}
+          name={"first_name"}
+          className="border w-full px-4 py-2 outline-none rounded-md"
+        />
+        {errors["first_name"] && (
+          <ErrorMessage>{errors["first_name"].message}</ErrorMessage>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <label
+          className="text-xs leading-3 uppercase text-neutral_04 font-bold"
+          htmlFor={"last_name"}
+        >
+          Last name
+        </label>
+        <input
+          {...register("last_name")}
+          type={"text"}
+          defaultValue={userBillingAddress?.last_name}
+          name={"last_name"}
+          className="border w-full px-4 py-2 outline-none rounded-md"
+        />
+        {errors["last_name"] && (
+          <ErrorMessage>{errors["last_name"].message}</ErrorMessage>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <label
+          className="text-xs leading-3 uppercase text-neutral_04 font-bold"
+          htmlFor={"card_number"}
+        >
+          Card number
+        </label>
+        <input
+          {...register("card_number")}
+          type={"text"}
+          defaultValue={userBillingAddress?.card_number}
+          name={"card_number"}
+          className="border w-full px-4 py-2 outline-none rounded-md"
+        />
+        {errors["card_number"] && (
+          <ErrorMessage>{errors["card_number"].message}</ErrorMessage>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <label
+          className="text-xs leading-3 uppercase text-neutral_04 font-bold"
+          htmlFor={"cvv"}
+        >
+          CVV
+        </label>
+        <input
+          {...register("cvv")}
+          type={"text"}
+          defaultValue={userBillingAddress?.cvv}
+          name={"cvv"}
+          className="border w-full px-4 py-2 outline-none rounded-md"
+        />
+        {errors["cvv"] && <ErrorMessage>{errors["cvv"].message}</ErrorMessage>}
+      </div>
+
+      <div className="flex flex-col gap-3">
+        <label
+          className="text-xs leading-3 uppercase text-neutral_04 font-bold"
+          htmlFor={"expiration_date"}
+        >
+          Expiration Date
+        </label>
+        <input
+          {...register("expiration_date")}
+          type={"text"}
+          defaultValue={userBillingAddress?.expiration_date}
+          name={"expiration_date"}
+          className="border w-full px-4 py-2 outline-none rounded-md"
+        />
+        {errors["expiration_date"] && (
+          <ErrorMessage>{errors["expiration_date"].message}</ErrorMessage>
+        )}
+      </div>
 
       <SubmitFormInput isSubmitting={isSubmitting} value="Submit" />
     </form>

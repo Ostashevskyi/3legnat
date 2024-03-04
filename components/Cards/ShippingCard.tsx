@@ -2,24 +2,24 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import BillingForm from "../Forms/BillingForm";
 import { Session } from "next-auth";
-import { TUserBillingAddress } from "@/types/UserAddresses";
+import { TUserShippingAddress } from "@/types/UserAddresses";
+import ShippingForm from "../Forms/ShippingForm";
 
-const BillingCard = ({
-  userBillingAddress,
+const ShippingCard = ({
+  userShippingAddress,
   session,
 }: {
-  userBillingAddress: TUserBillingAddress;
+  userShippingAddress: TUserShippingAddress;
   session: Session | null;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col gap-6 xl:flex-1 xl:min-w-[342px]">
+    <div className="flex flex-col gap-6 xl:flex-1">
       <section className="border border-neutral_04 p-4 rounded-md">
         <div className="flex justify-between mb-5">
-          <p className="semibold-body-2">Billing Address</p>
+          <p className="semibold-body-2">Shipping Address</p>
           <button
             className="flex items-center gap-1.5"
             onClick={() => setIsOpen(!isOpen)}
@@ -29,20 +29,20 @@ const BillingCard = ({
           </button>
         </div>
         <div>
-          {!isOpen && userBillingAddress && (
+          {!isOpen && userShippingAddress && (
             <div className="flex flex-col gap-4 regular-caption-1">
-              <p>{userBillingAddress.preset_name}</p>
+              <p>{userShippingAddress.preset_name}</p>
               <p>
-                {userBillingAddress.first_name} {userBillingAddress.last_name}
+                {userShippingAddress.first_name} {userShippingAddress.last_name}
               </p>
             </div>
           )}
         </div>
         <div>
           {isOpen && (
-            <BillingForm
+            <ShippingForm
               user_id={session?.user.user_id}
-              userBillingAddress={userBillingAddress}
+              userShippingAddress={userShippingAddress}
             />
           )}
         </div>
@@ -51,4 +51,4 @@ const BillingCard = ({
   );
 };
 
-export default BillingCard;
+export default ShippingCard;
