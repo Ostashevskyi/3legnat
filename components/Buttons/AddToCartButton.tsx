@@ -10,7 +10,7 @@ type AddToCartProps = {
 };
 
 const AddToCartButton = ({ title, price, slug, user_id }: AddToCartProps) => {
-  const { color, quantity } = useAppSelector((state) => state.cartReducer);
+  const { color } = useAppSelector((state) => state.cartReducer);
 
   const handleClick = () => {
     try {
@@ -24,7 +24,7 @@ const AddToCartButton = ({ title, price, slug, user_id }: AddToCartProps) => {
           price,
           slug,
           color,
-          quantity,
+          quantity: 1,
           user_id,
         }),
       });

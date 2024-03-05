@@ -53,7 +53,6 @@ const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
       <ChooseColor colors={colors} />
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <QuantityButton number={1} bg="gray" />
           <WishlistButton />
         </div>
         <AddToCartButton
