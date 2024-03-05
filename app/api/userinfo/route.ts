@@ -13,10 +13,7 @@ export async function GET(req: NextRequest) {
 
     return NextResponse.json({ userData }, { status: 200 });
   } catch (error) {
-    return NextResponse.json(
-      { message: "Some error while fetching data. Try again" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: error }, { status: 500 });
   }
 }
 

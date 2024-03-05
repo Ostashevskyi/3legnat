@@ -17,3 +17,39 @@ model User {
   name     String
   user_id  String  @unique @db.Uuid
 }
+
+model BillingAddress {
+  id              Int    @id @default(autoincrement())
+  preset_name     String
+  first_name      String
+  last_name       String
+  card_number     String
+  cvv             String
+  expiration_date String
+  user_id         String @unique @db.Uuid
+}
+
+model ShippingAddress {
+  id             Int    @id @default(autoincrement())
+  preset_name    String
+  first_name     String
+  last_name      String
+  country        String
+  street_address String
+  postcode       String
+  city           String
+  phone          String @unique
+  email          String @unique
+  user_id        String @unique @db.Uuid
+}
+
+model ShoppingCart {
+  id           Int    @id @default(autoincrement())
+  user_id      String @db.Uuid
+  product_name String
+  quantity     Int
+  price        Int
+  total_price  Int
+  color        String
+  slug         String
+}

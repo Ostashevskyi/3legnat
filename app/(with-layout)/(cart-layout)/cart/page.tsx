@@ -1,8 +1,28 @@
+"use client";
 import CartCard from "@/components/Cards/CartCard";
 import CartSummary from "@/containers/cart/cart-summary";
-import React from "react";
+import { fetchShoppingCart } from "@/redux/slices/cartSlice";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { TCartProduct } from "@/types/CartProduct";
+import { useSession } from "next-auth/react";
+import React, { useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux";
 
 const Cart = () => {
+  const { data: session } = useSession();
+  const dispatch = useDispatch<AppDispatch>();
+  const { cart, status } = useAppSelector((state) => state.cartReducer);
+
+  useEffect(() => {
+    dispatch(fetchShoppingCart(session?.user.user_id));
+  }, [dispatch, session]);
+
+  const CardSection = useMemo(() => {
+    return cart.map((product, index) => (
+      <CartCard product={product} user_id={session?.user.user_id} key={index} />
+    ));
+  }, [cart]);
+
   return (
     <section className="p-mobile lg:flex justify-between items-start gap-16 max-container">
       <div className="flex-1 md:mb-12">
@@ -12,11 +32,7 @@ const Cart = () => {
           <p className="hidden md:block">Price</p>
           <p className="hidden md:block">Subtotal</p>
         </div>
-        <CartCard />
-        <CartCard />
-        <CartCard />
-        <CartCard />
-        <CartCard />
+        {CardSection}
       </div>
       <CartSummary />
     </section>

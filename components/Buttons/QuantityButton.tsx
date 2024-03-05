@@ -1,14 +1,41 @@
 "use client";
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { TCartProduct } from "@/types/CartProduct";
+import { useSession } from "next-auth/react";
+import { fetchShoppingCart } from "@/redux/slices/cartSlice";
 
 const QuantityButton = ({
-  number,
+  product,
   bg,
 }: {
-  number: number;
+  product: TCartProduct;
   bg: "white" | "gray";
 }) => {
-  const [counter, setCounter] = useState(number);
+  const dispatch = useDispatch<AppDispatch>();
+  const [counter, setCounter] = useState(product?.quantity);
+  const { data: session } = useSession();
+
+  const handleClick = async (type: string) => {
+    const user_id = session?.user.user_id;
+    const res = await fetch("/api/cart", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        quantity: type === "increase" ? counter + 1 : counter - 1,
+        price: product.price,
+        user_id,
+        color: product.color,
+      }),
+    });
+
+    if (res.ok) {
+      dispatch(fetchShoppingCart(session?.user.user_id));
+    }
+  };
 
   return (
     <div
@@ -19,12 +46,22 @@ const QuantityButton = ({
       <button
         className="disabled:text-gray-400"
         disabled={counter === 1}
-        onClick={() => setCounter(counter - 1)}
+        onClick={() => {
+          setCounter(counter - 1);
+          handleClick("decrease");
+        }}
       >
         -
       </button>
       <p>{counter}</p>
-      <button onClick={() => setCounter(counter + 1)}>+</button>
+      <button
+        onClick={() => {
+          setCounter(counter + 1);
+          handleClick("increase");
+        }}
+      >
+        +
+      </button>
     </div>
   );
 };

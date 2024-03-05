@@ -1,14 +1,15 @@
 import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
-import DarkButton from "@/components/Buttons/DarkButton";
+import AddToCartButton from "@/components/Buttons/AddToCartButton";
 import QuantityButton from "@/components/Buttons/QuantityButton";
 import WishlistButton from "@/components/Buttons/WishlistButton";
 import ChooseColor from "@/components/Shared/ChooseColor";
 import StarsRating from "@/components/Shared/StarsRating";
 import Timer from "@/components/Timer/Timer";
+import { getUserDataById } from "@/hooks/getUserDataById";
 import { TProduct } from "@/types/ProductType";
 import React from "react";
 
-const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
+const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
   const {
     title,
     description,
@@ -19,7 +20,10 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
     sku,
     category,
     additionalInfo,
+    slug,
   } = productInfo;
+
+  const userData = await getUserDataById();
   return (
     <section className="p-mobile">
       <div className="mb-6">
@@ -49,10 +53,14 @@ const ProductInfo = ({ productInfo }: { productInfo: TProduct }) => {
       <ChooseColor colors={colors} />
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <QuantityButton number={1} bg="gray" />
           <WishlistButton />
         </div>
-        <DarkButton>Add to Cart</DarkButton>
+        <AddToCartButton
+          title={title}
+          price={price}
+          slug={slug}
+          user_id={userData.user_id}
+        />
       </div>
       <div className="grid grid-cols-2 mt-6 regular-caption-2 gap-y-2 border-t py-6">
         <p className="uppercase text-neutral_04">SKU</p>
