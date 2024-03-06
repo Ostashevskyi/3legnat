@@ -22,7 +22,7 @@ const CardSection = ({ data }: { data: TProduct[] }) => {
   ${grid === "grid9" && "grid-cols-6"} 
   `}
     >
-      {data.map((product, index) => (
+      {data?.map((product, index) => (
         <ProductCard product={product} key={index} />
       ))}
     </div>

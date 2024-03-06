@@ -8,4 +8,7 @@ export type TCartProduct = {
   slug: string;
   total_price: number;
   photoUrl: string;
+  delivery_price: number;
+  coupon_discount: number;
+  coupon_title: string;
 };

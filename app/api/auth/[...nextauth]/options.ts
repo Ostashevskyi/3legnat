@@ -6,7 +6,7 @@ import { User } from "@prisma/client";
 
 import { compare } from "bcrypt";
 
-import { prisma } from "@/lib/client";
+import prisma from "@/lib/client";
 
 export const options: NextAuthOptions = {
   providers: [

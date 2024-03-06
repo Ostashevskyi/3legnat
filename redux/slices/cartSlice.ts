@@ -43,6 +43,7 @@ type TInitialState = {
   status: string;
   error: string;
   totalPriceWithDelivery: number;
+  totalPriceWithDiscount: number;
   completedStages: string[];
 };
 
@@ -51,6 +52,7 @@ const initialState = {
   cart: [],
   deliveryPrice: 0,
   totalPriceWithDelivery: 0,
+  totalPriceWithDiscount: 0,
   status: "",
   error: "",
   completedStages: [],
@@ -68,6 +70,10 @@ export const cart = createSlice({
     },
     calculateTotalPrice: (state, action: PayloadAction<number>) => {
       state.totalPriceWithDelivery = state.deliveryPrice + action.payload;
+    },
+    calculateTotalPriceWithDiscount: (state, action: PayloadAction<number>) => {
+      state.totalPriceWithDiscount =
+        state.totalPriceWithDelivery - action.payload;
     },
     fillCompletedStages: (state, action: PayloadAction<string[]>) => {
       state.completedStages = action.payload;
@@ -97,5 +103,6 @@ export const {
   calculateTotalPrice,
   setDeliveryPrice,
   fillCompletedStages,
+  calculateTotalPriceWithDiscount,
 } = cart.actions;
 export default cart.reducer;

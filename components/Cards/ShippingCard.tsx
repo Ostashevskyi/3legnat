@@ -2,16 +2,15 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { Session } from "next-auth";
 import { TUserShippingAddress } from "@/types/UserAddresses";
 import ShippingForm from "../Forms/ShippingForm";
 
 const ShippingCard = ({
   userShippingAddress,
-  session,
+  user_id,
 }: {
   userShippingAddress: TUserShippingAddress;
-  session: Session | null;
+  user_id: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,7 +40,7 @@ const ShippingCard = ({
         <div>
           {isOpen && (
             <ShippingForm
-              user_id={session?.user.user_id}
+              user_id={user_id}
               userShippingAddress={userShippingAddress}
             />
           )}

@@ -50,7 +50,7 @@ const SliderContent = ({ count, text, title, name }: SliderContentProps) => {
   );
 };
 
-const CartSlider = ({ title, completed }: TInfo) => {
+const CartSlider = ({ title }: TInfo) => {
   return (
     <div>
       <Swiper

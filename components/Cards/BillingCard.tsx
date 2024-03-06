@@ -3,15 +3,14 @@
 import Image from "next/image";
 import { useState } from "react";
 import BillingForm from "../Forms/BillingForm";
-import { Session } from "next-auth";
 import { TUserBillingAddress } from "@/types/UserAddresses";
 
 const BillingCard = ({
   userBillingAddress,
-  session,
+  user_id,
 }: {
   userBillingAddress: TUserBillingAddress;
-  session: Session | null;
+  user_id: string;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,7 +40,7 @@ const BillingCard = ({
         <div>
           {isOpen && (
             <BillingForm
-              user_id={session?.user.user_id}
+              user_id={user_id}
               userBillingAddress={userBillingAddress}
             />
           )}

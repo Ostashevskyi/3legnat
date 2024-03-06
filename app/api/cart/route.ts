@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/client";
+import prisma from "@/lib/client";
 
 export const POST = async (req: Request) => {
   const { title, price, slug, color, quantity, user_id, url } =
@@ -16,6 +16,7 @@ export const POST = async (req: Request) => {
         total_price: totalPrice,
         color,
         photoUrl: url,
+        delivery_price: 0,
       },
     });
 
