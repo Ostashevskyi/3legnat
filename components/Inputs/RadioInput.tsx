@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch, useAppSelector } from "@/redux/store";
+import { AppDispatch } from "@/redux/store";
 import { setDeliveryPrice } from "@/redux/slices/cartSlice";
 
 const RadioInput = ({
@@ -33,7 +33,7 @@ const RadioInput = ({
         className="flex justify-between flex-1 semibold-caption-1"
       >
         <p>{title}</p>
-        <p>+${price.toFixed(2)}</p>
+        <p>+${price?.toFixed(2)}</p>
       </label>
     </div>
   );

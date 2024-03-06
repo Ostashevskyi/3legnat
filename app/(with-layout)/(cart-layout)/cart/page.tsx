@@ -11,6 +11,7 @@ import { AppDispatch, useAppSelector } from "@/redux/store";
 import {
   calculateTotalPrice,
   fetchShoppingCart,
+  fillCompletedStages,
 } from "@/redux/slices/cartSlice";
 
 import CartCard from "@/components/Cards/CartCard";
@@ -25,6 +26,7 @@ const Cart = () => {
 
   useEffect(() => {
     dispatch(fetchShoppingCart(session?.user.user_id));
+    dispatch(fillCompletedStages([]));
   }, [dispatch, session]);
 
   useEffect(() => {
