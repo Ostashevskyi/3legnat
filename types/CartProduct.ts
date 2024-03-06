@@ -6,4 +6,6 @@ export type TCartProduct = {
   price: number;
   color: string;
   slug: string;
+  total_price: number;
+  photoUrl: string;
 };

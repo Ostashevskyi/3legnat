@@ -1,32 +1,9 @@
 import React from "react";
 import CardSection from "./CardSection";
-import { performRequest } from "@/lib/datocms";
-
-const PRODUCTS = `
-query Products {
-  allProducts {
-    title
-    id
-    description
-    mainPhoto {
-      url
-      height
-      width
-    }
-    measurements
-    oldPrice
-    onsale
-    price
-    category
-    slug
-  }
-}`;
+import getProducts from "@/hooks/getProducts";
 
 const ProductsSection = async () => {
-  const {
-    data: { allProducts },
-  } = await performRequest({ query: PRODUCTS });
-
+  const { allProducts } = await getProducts();
   return <CardSection data={allProducts} />;
 };
 

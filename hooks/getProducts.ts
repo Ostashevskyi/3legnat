@@ -1,6 +1,14 @@
-import { performRequest } from "@/lib/datocms";
-import React from "react";
+const getProducts = async () => {
+  const res = await fetch(`http://localhost:3000/api/products`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    cache: "no-store",
+  });
 
-const getProducts = async () => {};
+  const data = await res.json();
+  return data;
+};
 
 export default getProducts;

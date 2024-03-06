@@ -25,6 +25,7 @@ export const fetchShoppingCart = createAsyncThunk<
         }
 
         const data = await res.json();
+
         return data;
       } catch (error) {
         return rejectWithValue(error);
@@ -38,15 +39,21 @@ export const fetchShoppingCart = createAsyncThunk<
 type TInitialState = {
   color: string;
   cart: TCartProduct[];
+  deliveryPrice: number;
   status: string;
   error: string;
+  totalPriceWithDelivery: number;
+  completedStages: string[];
 };
 
 const initialState = {
   color: "",
   cart: [],
+  deliveryPrice: 0,
+  totalPriceWithDelivery: 0,
   status: "",
   error: "",
+  completedStages: [],
 } as TInitialState;
 
 export const cart = createSlice({
@@ -55,6 +62,15 @@ export const cart = createSlice({
   reducers: {
     addColor: (state, action: PayloadAction<string>) => {
       state.color = action.payload;
+    },
+    setDeliveryPrice: (state, action: PayloadAction<number>) => {
+      state.deliveryPrice = action.payload;
+    },
+    calculateTotalPrice: (state, action: PayloadAction<number>) => {
+      state.totalPriceWithDelivery = state.deliveryPrice + action.payload;
+    },
+    fillCompletedStages: (state, action: PayloadAction<string[]>) => {
+      state.completedStages = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -76,5 +92,10 @@ export const cart = createSlice({
   },
 });
 
-export const { addColor } = cart.actions;
+export const {
+  addColor,
+  calculateTotalPrice,
+  setDeliveryPrice,
+  fillCompletedStages,
+} = cart.actions;
 export default cart.reducer;

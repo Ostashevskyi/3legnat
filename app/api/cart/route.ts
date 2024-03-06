@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/client";
 
 export const POST = async (req: Request) => {
-  const { title, price, slug, color, quantity, user_id } = await req.json();
+  const { title, price, slug, color, quantity, user_id, url } =
+    await req.json();
   const totalPrice = price * quantity;
   try {
     const res = await prisma.shoppingCart.create({
@@ -14,6 +15,7 @@ export const POST = async (req: Request) => {
         quantity,
         total_price: totalPrice,
         color,
+        photoUrl: url,
       },
     });
 

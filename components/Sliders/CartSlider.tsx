@@ -4,6 +4,8 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
+import { TInfo } from "../Shared/CartLayoutHeader";
+import { useAppSelector } from "@/redux/store";
 
 type SliderContentProps = {
   count: number;
@@ -13,7 +15,7 @@ type SliderContentProps = {
 };
 
 const SliderContent = ({ count, text, title, name }: SliderContentProps) => {
-  const completedStages: string[] = [];
+  const { completedStages } = useAppSelector((state) => state.cartReducer);
   const condition = completedStages.includes(name);
   return (
     <section
@@ -22,16 +24,25 @@ const SliderContent = ({ count, text, title, name }: SliderContentProps) => {
       } ${condition && "border-b-2 border-[#38CB89]"} `}
     >
       <div
-        className={`w-[42px] h-[42px]  text-white flex items-center justify-center rounded-full ${
-          title === name ? "bg-black" : "bg-gray-300"
-        } ${condition && "bg-[#38CB89]"}`}
+        className={`w-[42px] h-[42px]  text-white flex items-center justify-center rounded-full 
+         ${
+           title === name
+             ? "bg-black"
+             : condition
+             ? "bg-[#38CB89]"
+             : "bg-gray-300"
+         } `}
       >
         <p>{condition ? "✓" : count}</p>
       </div>
       <p
         className={`semibold-body-2  ${
-          title === name ? "text-black" : "text-gray-300"
-        } ${condition && "text-[#38CB89]"}`}
+          title === name
+            ? "text-black"
+            : condition
+            ? "text-[#38CB89]"
+            : "text-gray-300"
+        }`}
       >
         {text}
       </p>
@@ -39,7 +50,7 @@ const SliderContent = ({ count, text, title, name }: SliderContentProps) => {
   );
 };
 
-const CartSlider = ({ title }: { title: string }) => {
+const CartSlider = ({ title, completed }: TInfo) => {
   return (
     <div>
       <Swiper
