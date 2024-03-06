@@ -26,6 +26,7 @@ const QuantityButton = ({
       },
       body: JSON.stringify({
         quantity: type === "increase" ? counter + 1 : counter - 1,
+        product_name: product.product_name,
         price: product.price,
         user_id,
         color: product.color,

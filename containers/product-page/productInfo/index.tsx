@@ -1,6 +1,5 @@
 import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
 import AddToCartButton from "@/components/Buttons/AddToCartButton";
-import QuantityButton from "@/components/Buttons/QuantityButton";
 import WishlistButton from "@/components/Buttons/WishlistButton";
 import ChooseColor from "@/components/Shared/ChooseColor";
 import StarsRating from "@/components/Shared/StarsRating";
@@ -21,6 +20,7 @@ const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
     category,
     additionalInfo,
     slug,
+    mainPhoto,
   } = productInfo;
 
   const userData = await getUserDataById();
@@ -60,6 +60,7 @@ const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
           price={price}
           slug={slug}
           user_id={userData.user_id}
+          mainPhoto={mainPhoto}
         />
       </div>
       <div className="grid grid-cols-2 mt-6 regular-caption-2 gap-y-2 border-t py-6">

@@ -13,7 +13,6 @@ const ProductCard = ({ product }: { product: TProduct }) => {
   const isSale = true;
   const saleAmount = 50;
 
-  const [isOver, setIsOver] = useState(false);
   const [grid, setGrid] = useState<unknown>();
 
   const searchParams = useSearchParams();
@@ -23,18 +22,13 @@ const ProductCard = ({ product }: { product: TProduct }) => {
   }, [searchParams.get("grid")]);
 
   return (
-    // here
     <Link
       href={`/shop/${product.slug}`}
       className={`w-fit ${
         grid === "row" && " md:flex md:items-center md:gap-10 lg:gap-20"
       }`}
     >
-      <div
-        className="mb-3 relative w-fit"
-        onMouseEnter={() => setIsOver(!isOver)}
-        onMouseLeave={() => setIsOver(!isOver)}
-      >
+      <div className="mb-3 relative w-fit">
         <Image
           alt="product-image"
           src={product.mainPhoto.url}
@@ -65,17 +59,10 @@ const ProductCard = ({ product }: { product: TProduct }) => {
             />
           </div>
         </div>
-
-        {/* here */}
-        {isOver && (
-          <button className="max-w-[85%] w-full h-11 rounded-md bg-black text-white absolute m-auto left-0 right-0 bottom-4">
-            Add to cart
-          </button>
-        )}
       </div>
       <div>
         <StarsRating readOnly />
-        <p className="semibold-body-2 my-1">Loveseat Sofa</p>
+        <p className="semibold-body-2 my-1">{product.title}</p>
         <p className="semibold-caption-1">$199.00</p>
       </div>
     </Link>

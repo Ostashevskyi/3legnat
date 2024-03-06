@@ -12,14 +12,15 @@ const CartCard = ({
   product: TCartProduct;
   user_id: string | undefined;
 }) => {
-  const { color, price, product_name, quantity, slug } = product;
+  const { color, price, product_name, quantity, slug, photoUrl } = product;
+
   const totalPrice = price * quantity;
   return (
     <div>
       {/* mobile */}
       <div className="flex gap-4 border-b py-6 md:hidden">
         <Link href={`/shop/${slug}`}>
-          <Image src={"/chair.png"} alt="chair" width={80} height={96} />
+          <Image src={photoUrl} alt="chair" width={80} height={96} />
         </Link>
         <div className="flex-1 flex flex-col gap-2">
           <div className="flex justify-between semibold-caption-1">
@@ -38,10 +39,10 @@ const CartCard = ({
       </div>
 
       {/* desktop */}
-      <div className="grid-cols-5 gap-4 items-center hidden md:grid border-b mb-20">
+      <div className="grid-cols-5 gap-4 items-center hidden md:grid border-b">
         <div className="col-span-2 flex items-center gap-4 my-6">
           <Link href={`/shop/${slug}`}>
-            <Image src={"/chair.png"} alt="chair" width={80} height={96} />
+            <Image src={photoUrl} alt="chair" width={80} height={96} />
           </Link>
           <div className="flex flex-col gap-2">
             <Link href={`/shop/${slug}`}>

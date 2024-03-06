@@ -1,27 +1,54 @@
 "use client";
-import CartCard from "@/components/Cards/CartCard";
-import CartSummary from "@/containers/cart/cart-summary";
-import { fetchShoppingCart } from "@/redux/slices/cartSlice";
-import { AppDispatch, useAppSelector } from "@/redux/store";
-import { TCartProduct } from "@/types/CartProduct";
-import { useSession } from "next-auth/react";
+
 import React, { useEffect, useMemo, useState } from "react";
+
 import { useDispatch } from "react-redux";
+import { useSession } from "next-auth/react";
+
+import CartSummary from "@/containers/cart/cart-summary";
+
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import {
+  calculateTotalPrice,
+  fetchShoppingCart,
+} from "@/redux/slices/cartSlice";
+
+import CartCard from "@/components/Cards/CartCard";
 
 const Cart = () => {
   const { data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();
-  const { cart, status } = useAppSelector((state) => state.cartReducer);
+  const { cart, status, deliveryPrice } = useAppSelector(
+    (state) => state.cartReducer
+  );
+  const [totalPrice, setTotalPrice] = useState<number>();
 
   useEffect(() => {
     dispatch(fetchShoppingCart(session?.user.user_id));
   }, [dispatch, session]);
 
+  useEffect(() => {
+    if (cart.length) {
+      const total = cart
+        ?.map((product) => product.total_price)
+        ?.reduce((prev, next) => prev + next);
+
+      setTotalPrice(total);
+      dispatch(calculateTotalPrice(total));
+    }
+  }, [cart, deliveryPrice]);
+
   const CardSection = useMemo(() => {
-    return cart.map((product, index) => (
+    const sortedArray = cart.slice().sort((a, b) => a.id - b.id);
+
+    return sortedArray.map((product, index) => (
       <CartCard product={product} user_id={session?.user.user_id} key={index} />
     ));
   }, [cart]);
+
+  const SummarySection = useMemo(() => {
+    return <CartSummary totalPrice={totalPrice} />;
+  }, [totalPrice, deliveryPrice, cart]);
 
   return (
     <section className="p-mobile lg:flex justify-between items-start gap-16 max-container">
@@ -32,9 +59,9 @@ const Cart = () => {
           <p className="hidden md:block">Price</p>
           <p className="hidden md:block">Subtotal</p>
         </div>
-        {CardSection}
+        <div>{CardSection}</div>
       </div>
-      <CartSummary />
+      {SummarySection}
     </section>
   );
 };

@@ -1,15 +1,39 @@
-import React from "react";
+"use client";
 
-const RadioInput = ({ title, price }: { title: string; price?: string }) => {
+import React from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { setDeliveryPrice } from "@/redux/slices/cartSlice";
+
+const RadioInput = ({
+  title,
+  price,
+  checked,
+}: {
+  title: string;
+  price: number;
+  checked?: boolean;
+}) => {
+  const dispatch = useDispatch<AppDispatch>();
+  const handleClick = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setDeliveryPrice(+e.target.value));
+  };
   return (
     <div className={`flex gap-3 py-3 px-4 border border-black rounded-md`}>
-      <input type="radio" name="option" className="accent-black" />
+      <input
+        type="radio"
+        name="option"
+        value={price}
+        className="accent-black"
+        defaultChecked={checked}
+        onChange={handleClick}
+      />
       <label
         htmlFor="option"
         className="flex justify-between flex-1 semibold-caption-1"
       >
         <p>{title}</p>
-        <p>{price}</p>
+        <p>+${price.toFixed(2)}</p>
       </label>
     </div>
   );

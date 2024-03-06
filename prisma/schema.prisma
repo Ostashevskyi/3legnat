@@ -52,4 +52,5 @@ model ShoppingCart {
   total_price  Int
   color        String
   slug         String
+  photoUrl     String
 }
