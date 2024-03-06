@@ -5,23 +5,22 @@ import CartSlider from "../Sliders/CartSlider";
 
 export type TInfo = {
   title: string;
-  completed: boolean;
 };
 
 const CartLayoutHeader = () => {
   const pathname = usePathname();
-  const [info, setInfo] = useState<TInfo>({ title: "", completed: false });
+  const [info, setInfo] = useState<TInfo>({ title: "" });
 
   useEffect(() => {
     switch (pathname) {
       case "/cart":
-        setInfo({ title: "Shopping cart", completed: false });
+        setInfo({ title: "Shopping cart" });
         break;
       case "/checkout":
-        setInfo({ title: "Check Out", completed: false });
+        setInfo({ title: "Check Out" });
         break;
       case "/order-complete":
-        setInfo({ title: "Complete!", completed: false });
+        setInfo({ title: "Complete!" });
         break;
       default:
         break;
@@ -31,7 +30,7 @@ const CartLayoutHeader = () => {
   return (
     <section className="p-mobile text-center max-w-[832px] m-auto">
       <h3 className="mb-6">{info.title}</h3>
-      <CartSlider title={info.title} completed={info.completed} />
+      <CartSlider title={info.title} />
     </section>
   );
 };

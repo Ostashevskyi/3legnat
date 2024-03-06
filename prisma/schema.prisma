@@ -44,13 +44,22 @@ model ShippingAddress {
 }
 
 model ShoppingCart {
-  id           Int    @id @default(autoincrement())
-  user_id      String @db.Uuid
-  product_name String
-  quantity     Int
-  price        Int
-  total_price  Int
-  color        String
-  slug         String
-  photoUrl     String
+  id              Int     @id @default(autoincrement())
+  user_id         String  @db.Uuid
+  product_name    String
+  quantity        Int
+  price           Int
+  total_price     Int
+  color           String
+  slug            String
+  photoUrl        String
+  delivery_price  Int
+  coupon_title    String?
+  coupon_discount Int?
+}
+
+model Coupouns {
+  id              Int    @id @default(autoincrement())
+  title           String
+  discount_amount Int
 }

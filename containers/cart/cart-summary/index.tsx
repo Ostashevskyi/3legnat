@@ -2,16 +2,14 @@
 import React from "react";
 
 import RadioInput from "@/components/Inputs/RadioInput";
-import { useAppSelector, AppDispatch } from "@/redux/store";
+import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { fillCompletedStages } from "@/redux/slices/cartSlice";
+import DarkButton from "@/components/Buttons/DarkButton";
 
 const CartSummary = ({ totalPrice }: { totalPrice: number | undefined }) => {
   const { totalPriceWithDelivery } = useAppSelector(
     (state) => state.cartReducer
   );
-  const dispatch = useDispatch<AppDispatch>();
 
   return (
     <section className="p-4 border border-black rounded-md mb-20 flex-1 max-w-[413px]">
@@ -31,9 +29,7 @@ const CartSummary = ({ totalPrice }: { totalPrice: number | undefined }) => {
           <p>${totalPriceWithDelivery?.toFixed(2)}</p>
         </div>
         <Link href="/checkout">
-          <button onClick={() => dispatch(fillCompletedStages(["Cart"]))}>
-            Checkout
-          </button>
+          <DarkButton>Checkout</DarkButton>
         </Link>
       </div>
     </section>
