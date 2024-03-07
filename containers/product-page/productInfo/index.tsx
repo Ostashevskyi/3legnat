@@ -37,7 +37,7 @@ const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
           <div className="flex gap-3 items-center">
             <h6>${price.toFixed(2)}</h6>
             <p className="h7 line-through text-neutral_04">
-              ${oldPrice?.toFixed(2)}
+              {oldPrice && `${oldPrice?.toFixed(2)}`}
             </p>
           </div>
         </div>

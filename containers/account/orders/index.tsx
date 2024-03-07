@@ -9,7 +9,13 @@ const Orders = async () => {
   return (
     <section className="max-container p-mobile">
       <p className="semibold-body-1 mb-10">Order History</p>
-      <div className="mb-20">
+      <div className="mb-20 max-h-[300px] overflow-y-scroll">
+        <div className="grid grid-cols-4 border-b py-2 text-neutral_04">
+          <p>Number ID</p>
+          <p>Dates</p>
+          <p>Status</p>
+          <p>Price</p>
+        </div>
         {orders.map((order, index) => {
           const formatedDate = formatDate(order.date);
           console.log(formatDate);
@@ -32,12 +38,6 @@ const Orders = async () => {
               </div>
 
               <div className="grid-cols-1 regular-caption-1 hidden lg:grid">
-                <div className="grid grid-cols-4 border-b py-2 text-neutral_04">
-                  <p>Number ID</p>
-                  <p>Dates</p>
-                  <p>Status</p>
-                  <p>Price</p>
-                </div>
                 <div className="grid grid-cols-4 py-6 border-b font-medium text-neutral_07">
                   <p>{order.order_code}</p>
                   <p>{order.status}</p>
