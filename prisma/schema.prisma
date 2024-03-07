@@ -73,3 +73,12 @@ model Order {
   user_id    String
   status     String
 }
+
+model Wishlist {
+  id            Int    @id @default(autoincrement())
+  image         String
+  product_title String
+  price         Int
+  user_id       String
+  slug          String
+}

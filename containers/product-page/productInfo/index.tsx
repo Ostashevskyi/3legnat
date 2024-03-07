@@ -1,12 +1,15 @@
-import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
-import AddToCartButton from "@/components/Buttons/AddToCartButton";
-import WishlistButton from "@/components/Buttons/WishlistButton";
+import React from "react";
+
+import { getUserDataById } from "@/hooks/getUserDataById";
+
+import { TProduct } from "@/types/ProductType";
+
+import Timer from "@/components/Timer/Timer";
 import ChooseColor from "@/components/Shared/ChooseColor";
 import StarsRating from "@/components/Shared/StarsRating";
-import Timer from "@/components/Timer/Timer";
-import { getUserDataById } from "@/hooks/getUserDataById";
-import { TProduct } from "@/types/ProductType";
-import React from "react";
+import WishlistButton from "@/components/Buttons/WishlistButton";
+import AddToCartButton from "@/components/Buttons/AddToCartButton";
+import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
 
 const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
   const {
@@ -53,7 +56,7 @@ const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
       <ChooseColor colors={colors} />
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <WishlistButton />
+          <WishlistButton product={productInfo} user_id={userData.user_id} />
         </div>
         <AddToCartButton
           title={title}

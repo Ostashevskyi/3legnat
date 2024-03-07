@@ -18,7 +18,6 @@ const Orders = async () => {
         </div>
         {orders.map((order, index) => {
           const formatedDate = formatDate(order.date);
-          console.log(formatDate);
 
           return (
             <div key={index}>
