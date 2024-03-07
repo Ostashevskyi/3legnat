@@ -22,7 +22,7 @@ const CartSummary = ({ totalPrice }: { totalPrice: number | undefined }) => {
       <div>
         <div className="flex justify-between bold-caption-1 border-b pb-4 mb-3">
           <p>Subtotal</p>
-          <p>${totalPrice?.toFixed(2)}</p>
+          <p>{totalPrice ? `${totalPrice?.toFixed(2)}` : "$0.00"}</p>
         </div>
         <div className="flex justify-between bold-body-2 mb-6">
           <p>Total</p>

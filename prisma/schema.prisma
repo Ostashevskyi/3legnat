@@ -63,3 +63,12 @@ model Coupouns {
   title           String
   discount_amount Int
 }
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  order_code String   @unique
+  date       DateTime @default(now())
+  total      Int
+  products   Json
+  user_id    String
+}

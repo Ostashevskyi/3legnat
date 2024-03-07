@@ -17,7 +17,7 @@ const CartLayoutHeader = () => {
         setInfo({ title: "Shopping cart" });
         break;
       case "/checkout":
-        setInfo({ title: "Check Out" });
+        setInfo({ title: "Checkout" });
         break;
       case "/order-complete":
         setInfo({ title: "Complete!" });
