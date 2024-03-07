@@ -9,7 +9,7 @@ const Orders = async () => {
   return (
     <section className="max-container p-mobile">
       <p className="semibold-body-1 mb-10">Order History</p>
-      <div className="mb-20 max-h-[300px] overflow-scroll">
+      <div className="mb-20 max-h-[300px] overflow-y-scroll">
         <div className="grid grid-cols-4 border-b py-2 text-neutral_04">
           <p>Number ID</p>
           <p>Dates</p>
