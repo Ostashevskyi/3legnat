@@ -71,4 +71,5 @@ model Order {
   total      Int
   products   Json
   user_id    String
+  status     String
 }

@@ -11,6 +11,7 @@ export const POST = async (req: Request) => {
         total,
         products,
         user_id,
+        status: "Processing",
       },
     });
 

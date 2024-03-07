@@ -1,5 +1,6 @@
 import Address from "@/containers/account/address";
 import AccountDetails from "@/containers/account/details";
+import Orders from "@/containers/account/orders";
 import React from "react";
 
 const AccountPage = ({ params: { page } }: { params: { page: string } }) => {
@@ -8,6 +9,8 @@ const AccountPage = ({ params: { page } }: { params: { page: string } }) => {
       return <AccountDetails />;
     case "address":
       return <Address />;
+    case "orders":
+      return <Orders />;
     default:
       return;
   }

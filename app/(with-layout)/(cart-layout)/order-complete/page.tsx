@@ -20,7 +20,8 @@ type TOrderCode = {
 };
 
 const OrderComplete = async () => {
-  const order = (await getOrder()) as TOrderCode;
+  const orders = (await getOrder()) as TOrderCode[];
+  const order = orders[0];
   const { products } = order;
 
   const formatedDate = formatDate(order.date);

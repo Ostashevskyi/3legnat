@@ -16,5 +16,5 @@ export const getOrder = async () => {
 
   const data = await res.json();
   const { orders } = data;
-  return orders[0];
+  return orders;
 };
