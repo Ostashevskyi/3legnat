@@ -71,7 +71,7 @@ const CartSlider = ({ title }: TInfo) => {
             count={2}
             text="Checkout details"
             title={title}
-            name="Check Out"
+            name="Checkout"
           />
         </SwiperSlide>
         <SwiperSlide>

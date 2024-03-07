@@ -1,18 +1,24 @@
-import DarkButton from "@/components/Buttons/DarkButton";
+import React from "react";
+
+import Link from "next/link";
+
+import OrderSummary from "@/containers/checkout";
+
+import { getUserDataById } from "@/hooks/getUserDataById";
+import { getUserBillingAddressById } from "@/hooks/getUserBillingAddressById";
+import { getUserShippingAddressById } from "@/hooks/getUserShippingAddressById";
+
 import BillingCard from "@/components/Cards/BillingCard";
 import ShippingCard from "@/components/Cards/ShippingCard";
-import ContactInformationForm from "@/components/Forms/ContactInformationForm";
+import PlaceOrderButton from "@/components/Buttons/PlaceOrderButton";
 import ShippingAddressForm from "@/components/Forms/ShippingAddressForm";
-import OrderSummary from "@/containers/checkout";
-import { getUserBillingAddressById } from "@/hooks/getUserBillingAddressById";
-import { getUserDataById } from "@/hooks/getUserDataById";
-import { getUserShippingAddressById } from "@/hooks/getUserShippingAddressById";
-import React from "react";
+import ContactInformationForm from "@/components/Forms/ContactInformationForm";
 
 const Checkout = async () => {
   const userInfo = await getUserDataById();
   const { userBillingAddress } = await getUserBillingAddressById();
   const { userShippingAddress } = await getUserShippingAddressById();
+
   return (
     <div className="p-mobile lg:flex lg:gap-16 max-container">
       <div className="flex flex-col flex-1 gap-6 mb-6">
@@ -32,15 +38,15 @@ const Checkout = async () => {
         ) : (
           <ShippingAddressForm />
         )}
-        <div className="hidden lg:block">
-          <DarkButton>Place Order</DarkButton>
-        </div>
+        <Link href={"/order-complete"} className="hidden lg:block">
+          <PlaceOrderButton user_id={userInfo.user_id} />
+        </Link>
       </div>
       <div>
         <OrderSummary user_id={userInfo?.user_id} />
-        <div className="lg:hidden mb-20">
-          <DarkButton>Place Order</DarkButton>
-        </div>
+        <Link href={"/order-complete"} className="lg:hidden mb-20">
+          <PlaceOrderButton user_id={userInfo.user_id} />
+        </Link>
       </div>
     </div>
   );
