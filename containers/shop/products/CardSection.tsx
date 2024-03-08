@@ -3,8 +3,15 @@ import ProductCard from "@/components/Cards/ProductCard";
 import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import type { TProduct } from "@/types/ProductType";
+import { TWishlist } from "@/types/Wishlist";
 
-const CardSection = ({ data }: { data: TProduct[] }) => {
+const CardSection = ({
+  data,
+  wishlist,
+}: {
+  data: TProduct[];
+  wishlist: TWishlist[];
+}) => {
   const [grid, setGrid] = useState<unknown>();
 
   const searchParams = useSearchParams();
@@ -23,7 +30,7 @@ const CardSection = ({ data }: { data: TProduct[] }) => {
   `}
     >
       {data?.map((product, index) => (
-        <ProductCard product={product} key={index} />
+        <ProductCard product={product} key={index} wishlist={wishlist} />
       ))}
     </div>
   );

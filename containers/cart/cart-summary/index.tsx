@@ -6,8 +6,8 @@ import { useAppSelector } from "@/redux/store";
 import Link from "next/link";
 import DarkButton from "@/components/Buttons/DarkButton";
 
-const CartSummary = ({ totalPrice }: { totalPrice: number | undefined }) => {
-  const { totalPriceWithDelivery } = useAppSelector(
+const CartSummary = () => {
+  const { totalPriceWithDelivery, totalPrice } = useAppSelector(
     (state) => state.cartReducer
   );
 

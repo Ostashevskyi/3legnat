@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addColor } from "@/redux/slices/cartSlice";
-import { AppDispatch, useAppSelector } from "@/redux/store";
+import { AppDispatch } from "@/redux/store";
 
 type TColor = {
   customData: { color: string };
@@ -15,7 +15,9 @@ type TColor = {
 
 const ChooseColor = ({ colors }: { colors: TColor[] }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const [activeColor, setActiveColor] = useState<string>();
+  const [activeColor, setActiveColor] = useState<string>(
+    colors[0].customData.color
+  );
   return (
     <div className="mb-12">
       <p className="semibold-body-2 text-neutral_04 mb-2">{"Choose Color >"}</p>

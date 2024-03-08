@@ -1,14 +1,24 @@
-import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
-import AddToCartButton from "@/components/Buttons/AddToCartButton";
-import WishlistButton from "@/components/Buttons/WishlistButton";
-import ChooseColor from "@/components/Shared/ChooseColor";
-import StarsRating from "@/components/Shared/StarsRating";
-import Timer from "@/components/Timer/Timer";
-import { getUserDataById } from "@/hooks/getUserDataById";
-import { TProduct } from "@/types/ProductType";
 import React from "react";
 
-const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
+import { getUserDataById } from "@/hooks/getUserDataById";
+
+import { TProduct } from "@/types/ProductType";
+
+import Timer from "@/components/Timer/Timer";
+import ChooseColor from "@/components/Shared/ChooseColor";
+import StarsRating from "@/components/Shared/StarsRating";
+import WishlistButton from "@/components/Buttons/WishlistButton";
+import AddToCartButton from "@/components/Buttons/AddToCartButton";
+import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
+import { TWishlist } from "@/types/Wishlist";
+
+const ProductInfo = async ({
+  productInfo,
+  wishlist,
+}: {
+  productInfo: TProduct;
+  wishlist: TWishlist[];
+}) => {
   const {
     title,
     description,
@@ -53,7 +63,12 @@ const ProductInfo = async ({ productInfo }: { productInfo: TProduct }) => {
       <ChooseColor colors={colors} />
       <div>
         <div className="flex items-center gap-2 mb-4">
-          <WishlistButton />
+          <WishlistButton
+            main
+            product={productInfo}
+            user_id={userData.user_id}
+            wishlist={wishlist}
+          />
         </div>
         <AddToCartButton
           title={title}

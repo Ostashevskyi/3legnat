@@ -1,9 +1,13 @@
 "use client";
 import { TCartProduct } from "@/types/CartProduct";
 import React from "react";
-import { fetchShoppingCart } from "@/redux/slices/cartSlice";
+import {
+  calculateTotalPrice,
+  fetchShoppingCart,
+  setTotalPrice,
+} from "@/redux/slices/cartSlice";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch, useAppSelector } from "@/redux/store";
 
 const DeleteCartButton = ({
   user_id,
@@ -13,6 +17,7 @@ const DeleteCartButton = ({
   product: TCartProduct;
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const { cart } = useAppSelector((state) => state.cartReducer);
 
   const handleClick = async () => {
     try {
@@ -31,8 +36,15 @@ const DeleteCartButton = ({
 
       if (res.ok) {
         dispatch(fetchShoppingCart(user_id));
+
+        if (cart.length === 1) {
+          dispatch(setTotalPrice(0));
+          dispatch(calculateTotalPrice(0));
+        }
       }
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

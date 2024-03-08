@@ -1,11 +1,85 @@
-import Image from "next/image";
-import React from "react";
+"use client";
+import { TProduct } from "@/types/ProductType";
+import React, { useEffect, useState } from "react";
+import HeartIcon from "../Icons/HeartIcon";
+import { TWishlist } from "@/types/Wishlist";
 
-const WishlistButton = () => {
-  return (
-    <button className="flex justify-center items-center gap-2 w-full border py-1 max-w-[223px] border-black rounded-md">
-      <Image src={"/icons/heart.svg"} alt="heart" width={16} height={16} />
-      <p>Wishlist</p>
+const WishlistButton = ({
+  product,
+  user_id,
+  main,
+  wishlist,
+}: {
+  product: TProduct;
+  user_id: string | undefined;
+  main?: boolean;
+  wishlist: TWishlist[];
+}) => {
+  const [isInWishlist, setIsInWishlist] = useState<boolean>(false);
+
+  const handleClick = async () => {
+    const { mainPhoto, title, price } = product;
+
+    if (!isInWishlist) {
+      const res = await fetch("/api/wishlist", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          image: mainPhoto.url,
+          product_title: title,
+          price,
+          user_id,
+          slug: product.slug,
+        }),
+      });
+
+      if (res.ok) {
+        setIsInWishlist(true);
+      }
+    }
+
+    if (isInWishlist) {
+      const res = await fetch("/api/wishlist", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          user_id,
+          slug: product.slug,
+        }),
+      });
+
+      if (res.ok) {
+        setIsInWishlist(false);
+      }
+    }
+  };
+
+  useEffect(() => {
+    const inWishlist = wishlist.filter((el) => el.slug === product.slug);
+
+    if (inWishlist.length) {
+      setIsInWishlist(true);
+    }
+  }, []);
+
+  return main ? (
+    <button
+      onClick={handleClick}
+      className="flex justify-center items-center gap-2 w-full border py-1 max-w-[223px] border-black rounded-md"
+    >
+      <HeartIcon isInWishlist={isInWishlist} />
+      <p>{isInWishlist ? "In Wishlist" : "Add to Wishlist"}</p>
+    </button>
+  ) : (
+    <button
+      className="absolute top-4 right-4 p-[6px] rounded-full bg-white "
+      onClick={handleClick}
+    >
+      <HeartIcon isInWishlist={isInWishlist} />
     </button>
   );
 };

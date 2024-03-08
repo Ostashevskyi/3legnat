@@ -12,9 +12,11 @@ import {
   calculateTotalPrice,
   fetchShoppingCart,
   fillCompletedStages,
+  setTotalPrice,
 } from "@/redux/slices/cartSlice";
 
 import CartCard from "@/components/Cards/CartCard";
+import Empty from "@/components/Shared/Empty";
 
 const Cart = () => {
   const { data: session } = useSession();
@@ -22,7 +24,6 @@ const Cart = () => {
   const { cart, status, deliveryPrice } = useAppSelector(
     (state) => state.cartReducer
   );
-  const [totalPrice, setTotalPrice] = useState<number>();
 
   useEffect(() => {
     dispatch(fetchShoppingCart(session?.user.user_id));
@@ -35,10 +36,10 @@ const Cart = () => {
         ?.map((product) => product.total_price)
         ?.reduce((prev, next) => prev + next);
 
-      setTotalPrice(total);
+      dispatch(setTotalPrice(total));
       dispatch(calculateTotalPrice(total));
     }
-  }, [cart, deliveryPrice]);
+  }, [cart.length, deliveryPrice]);
 
   const CardSection = useMemo(() => {
     const sortedArray = cart.slice().sort((a, b) => a.id - b.id);
@@ -49,20 +50,24 @@ const Cart = () => {
   }, [cart]);
 
   const SummarySection = useMemo(() => {
-    return <CartSummary totalPrice={totalPrice} />;
-  }, [totalPrice, deliveryPrice, cart]);
+    return <CartSummary />;
+  }, [, deliveryPrice, cart.length]);
 
   return (
     <section className="p-mobile lg:flex justify-between items-start gap-16 max-container">
-      <div className="flex-1 md:mb-12">
-        <div className="grid grid-cols-5 flex-1 semibold-body-2 border-b pb-6 semibold-body-2">
-          <p className="col-span-2">Product</p>
-          <p className="hidden md:block">Quantity</p>
-          <p className="hidden md:block">Price</p>
-          <p className="hidden md:block">Subtotal</p>
+      {!cart.length && <Empty section="cart" />}
+      {!!cart.length && (
+        <div className="flex-1 md:mb-12">
+          <div className="grid grid-cols-5 flex-1 semibold-body-2 border-b pb-6 semibold-body-2">
+            <p className="col-span-2">Product</p>
+            <p className="hidden md:block">Quantity</p>
+            <p className="hidden md:block">Price</p>
+            <p className="hidden md:block">Subtotal</p>
+          </div>
+          <div>{CardSection}</div>
         </div>
-        <div>{CardSection}</div>
-      </div>
+      )}
+
       {SummarySection}
     </section>
   );
