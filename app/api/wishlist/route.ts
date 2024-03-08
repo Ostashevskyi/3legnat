@@ -37,3 +37,20 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json({ error }, { status: 500 });
   }
 };
+
+export const DELETE = async (req: Request) => {
+  try {
+    const { user_id, slug } = await req.json();
+
+    const res = await prisma.wishlist.deleteMany({
+      where: {
+        user_id,
+        slug,
+      },
+    });
+
+    return NextResponse.json({ res }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+};

@@ -7,6 +7,9 @@ import { getWishlist } from "@/hooks/getWishlist";
 
 import DarkButton from "@/components/Buttons/DarkButton";
 import DeleteWishlistButton from "@/components/Buttons/DeleteWishlistButton";
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import Empty from "@/components/Shared/Empty";
 
 type TWishlist = {
   id: number;
@@ -19,16 +22,21 @@ type TWishlist = {
 
 const Wishlist = async () => {
   const wishlist = (await getWishlist()) as TWishlist[];
+  const session = await getServerSession(options);
 
   return (
     <section className="p-mobile">
       <p className="semibold-body-1 lg:mb-10">Your Wishlist</p>
-      <div className="hidden lg:grid grid-cols-3 pb-2 border-b">
-        <p>Product</p>
-        <p>Price</p>
-        <p>Action</p>
-      </div>
-      <div className="">
+      {!wishlist.length && <Empty section="wishlist" />}
+      {!!wishlist.length && (
+        <div className="hidden lg:grid grid-cols-3 pb-2 border-b">
+          <p>Product</p>
+          <p>Price</p>
+          <p>Action</p>
+        </div>
+      )}
+
+      <div>
         {wishlist.map((product, index) => {
           return (
             <div
@@ -37,7 +45,10 @@ const Wishlist = async () => {
             >
               <div className="flex gap-4 mb-4 lg:mb-0 lg:items-center">
                 <div className="flex items-center gap-4">
-                  <DeleteWishlistButton />
+                  <DeleteWishlistButton
+                    product={product}
+                    user_id={session?.user.user_id}
+                  />
                   <Image
                     src={product.image}
                     alt="image"

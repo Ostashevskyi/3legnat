@@ -7,6 +7,7 @@ import Link from "next/link";
 import ProductInfo from "@/containers/product-page/productInfo";
 import Newsletter from "@/components/Newsletter";
 import AdditionalInfo from "@/containers/product-page/additionalInfoDesktop";
+import { getWishlist } from "@/hooks/getWishlist";
 
 const PRODUCT = `
 query Product($slug: String) {
@@ -56,6 +57,7 @@ const ProductPage = async ({
   });
 
   const { title, additionalInfo } = product;
+  const wishlist = await getWishlist();
   return (
     <div>
       <div className="max-container">
@@ -66,7 +68,7 @@ const ProductPage = async ({
         </div>
         <div className="lg:flex xl:gap-16">
           <ProductHeader productInfo={product} />
-          <ProductInfo productInfo={product} />
+          <ProductInfo productInfo={product} wishlist={wishlist} />
         </div>
         <div className="hidden lg:block p-mobile mb-10">
           <AdditionalInfo additionalInfo={additionalInfo} />

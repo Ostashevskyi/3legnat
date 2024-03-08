@@ -7,9 +7,19 @@ import { useSearchParams } from "next/navigation";
 import StarsRating from "@/components/Shared/StarsRating";
 import type { TProduct } from "@/types/ProductType";
 import Link from "next/link";
+import WishlistButton from "../Buttons/WishlistButton";
+import { useSession } from "next-auth/react";
+import { TWishlist } from "@/types/Wishlist";
 
-const ProductCard = ({ product }: { product: TProduct }) => {
+const ProductCard = ({
+  product,
+  wishlist,
+}: {
+  product: TProduct;
+  wishlist: TWishlist[];
+}) => {
   const [grid, setGrid] = useState<unknown>();
+  const { data: session } = useSession();
 
   const searchParams = useSearchParams();
 
@@ -18,19 +28,20 @@ const ProductCard = ({ product }: { product: TProduct }) => {
   }, [searchParams.get("grid")]);
 
   return (
-    <Link
-      href={`/shop/${product.slug}`}
+    <div
       className={`w-fit max-w-[442px]${
         grid === "row" && " md:flex md:items-center md:gap-10 lg:gap-20"
       }`}
     >
       <div className="mb-3 relative w-fit flex-1">
-        <Image
-          alt="product-image"
-          src={product.mainPhoto.url}
-          width={262}
-          height={349}
-        />
+        <Link href={`/shop/${product.slug}`}>
+          <Image
+            alt="product-image"
+            src={product.mainPhoto.url}
+            width={262}
+            height={349}
+          />
+        </Link>
 
         <div>
           <div>
@@ -44,19 +55,18 @@ const ProductCard = ({ product }: { product: TProduct }) => {
               </div>
             )}
           </div>
-          <div className="absolute top-4 right-4 p-[6px] rounded-full bg-white ">
-            <Image
-              width={20}
-              height={20}
-              src={"/icons/heart.svg"}
-              alt="heart"
-            />
-          </div>
+          <WishlistButton
+            product={product}
+            user_id={session?.user.user_id}
+            wishlist={wishlist}
+          />
         </div>
       </div>
       <div className={`${grid === "row" ? "max-w-[100px]" : "max-w-fit"}`}>
         <StarsRating readOnly />
-        <p className={`semibold-body-2 my-1  `}>{product.title}</p>
+        <Link href={`/shop/${product.slug}`}>
+          <p className={`semibold-body-2 my-1  `}>{product.title}</p>
+        </Link>
         <div className={`flex gap-3 items-center`}>
           <p className="semibold-caption-1">${product.price.toFixed(2)}</p>
           {product.onsale && (
@@ -66,7 +76,7 @@ const ProductCard = ({ product }: { product: TProduct }) => {
           )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 
