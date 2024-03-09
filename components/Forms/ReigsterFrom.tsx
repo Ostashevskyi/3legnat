@@ -5,8 +5,8 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 import DarkButton from "@/components/Buttons/DarkButton";
 import { TRegisterSchema, registerSchema } from "@/lib/zodSchema/register";
@@ -14,6 +14,7 @@ import ErrorMessage from "../Shared/ErrorMessage";
 
 const RegisterForm = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { push } = useRouter();
 
   const {
     handleSubmit,
@@ -44,6 +45,7 @@ const RegisterForm = () => {
 
       if (res.ok) {
         reset();
+        push("/login");
       } else {
         console.log("user registration failed");
       }
@@ -94,7 +96,7 @@ const RegisterForm = () => {
               className="outline-none"
               autoComplete="current-password"
             />
-            <button onClick={() => setIsVisible(!isVisible)}>
+            <button type="button" onClick={() => setIsVisible(!isVisible)}>
               <Image
                 src={"/icons/eye.svg"}
                 alt="show-password"
@@ -109,36 +111,9 @@ const RegisterForm = () => {
         </div>
       </div>
 
-      <div className="mb-8">
-        <div className="flex justify-between items-center">
-          <div className="flex gap-3 items-center">
-            <input
-              // {...register("priracyPolicy")}
-              type="checkbox"
-              name="remember"
-              className="w-6 h-6 "
-            />
-            <label
-              htmlFor="remember"
-              className="semibold-caption-2 text-neutral_04"
-            >
-              I agree with{" "}
-              <Link className="text-neutral_07" href={"/privacy-policy"}>
-                Privacy Policy
-              </Link>{" "}
-              and{" "}
-              <Link className="text-neutral_07" href={"/terms-of-use"}>
-                Terms of Use
-              </Link>
-            </label>
-          </div>
-        </div>
-        {/* {errors.priracyPolicy && (
-          <ErrorMessage>{errors.priracyPolicy.message}</ErrorMessage>
-        )} */}
-      </div>
-
-      <DarkButton>Sign Up</DarkButton>
+      <DarkButton>
+        <input type="submit" value={"Sign Up"} />
+      </DarkButton>
     </form>
   );
 };

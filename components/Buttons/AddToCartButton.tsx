@@ -1,8 +1,10 @@
 "use client";
-import { useAppSelector } from "@/redux/store";
+import { fetchShoppingCart } from "@/redux/slices/cartSlice";
+import { AppDispatch, useAppSelector } from "@/redux/store";
 import { TCartProduct } from "@/types/CartProduct";
-import { error } from "console";
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { toast } from "sonner";
 
 export type TMainPhoto = {
   url: string;
@@ -25,11 +27,11 @@ const AddToCartButton = ({
   user_id,
   mainPhoto,
 }: AddToCartProps) => {
-  const [error, setError] = useState<string>();
   const [loading, setLoading] = useState<boolean>();
   const [inCart, setInCart] = useState<TCartProduct[]>();
   const { color, cart } = useAppSelector((state) => state.cartReducer);
   const { url } = mainPhoto;
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -49,6 +51,7 @@ const AddToCartButton = ({
           setInCart(
             data.filter((el) => el.color === color && el.product_name === title)
           );
+          dispatch(fetchShoppingCart(user_id));
         }
       } catch (error) {
         console.log(error);
@@ -58,33 +61,30 @@ const AddToCartButton = ({
   }, [color, cart, loading]);
 
   const handleClick = async () => {
-    if (color.length) {
-      setLoading(true);
-      try {
-        const res = await fetch("/api/cart", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title,
-            price,
-            slug,
-            color,
-            quantity: 1,
-            user_id,
-            url,
-          }),
-        });
+    setLoading(true);
+    try {
+      const res = await fetch("/api/cart", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          price,
+          slug,
+          color,
+          quantity: 1,
+          user_id,
+          url,
+        }),
+      });
 
-        if (res.ok) {
-          setLoading(false);
-        }
-      } catch (error) {
-        console.log(error);
+      if (res.ok) {
+        setLoading(false);
+        toast.success("Added to your cart");
       }
-    } else {
-      setError("Firstly you need to choose a color");
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -101,7 +101,6 @@ const AddToCartButton = ({
           ? "Already in cart"
           : "Add to Cart"}
       </button>
-      {error && <p className="text-secondary_red">{error}</p>}
     </div>
   );
 };

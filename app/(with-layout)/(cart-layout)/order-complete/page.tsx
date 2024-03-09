@@ -21,11 +21,11 @@ type TOrderCode = {
 
 const OrderComplete = async () => {
   const orders = (await getOrder()) as TOrderCode[];
-  const order = orders[0];
+
+  const order = orders[orders.length - 1];
   const { products } = order;
 
   const formatedDate = formatDate(order.date);
-  console.log(formatedDate);
 
   return (
     <div className="p-mobile lg:max-w-[738px] m-auto">

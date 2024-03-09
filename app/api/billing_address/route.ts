@@ -79,3 +79,19 @@ export async function PATCH(req: Request) {
     return NextResponse.json({ message: error }, { status: 500 });
   }
 }
+
+export const DELETE = async (req: Request) => {
+  try {
+    const { user_id } = await req.json();
+
+    const res = await prisma.billingAddress.deleteMany({
+      where: {
+        user_id,
+      },
+    });
+
+    return NextResponse.json({ res }, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error }, { status: 500 });
+  }
+};

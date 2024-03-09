@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 import { TLoginSchema, loginSchema } from "@/lib/zodSchema/login";
 
@@ -20,6 +21,7 @@ type TCredentials = {
 
 const LoginForm = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [error, setError] = useState("");
 
   const {
     handleSubmit,
@@ -36,13 +38,24 @@ const LoginForm = () => {
         password: data.password,
       };
 
-      const res = await signIn("credentials", credentials);
+      const signInResult = await signIn("credentials", {
+        email: credentials.email,
+        password: credentials.password,
+        redirect: true,
+        callbackUrl: "/",
+      });
 
-      if (res?.error) {
-        throw Error("Error during login");
+      if (signInResult?.error === "Invalid email or password") {
+        setError("Invalid email or password");
+      } else if (signInResult?.error) {
+        setError("Invalid email or password");
+      } else if (signInResult?.ok) {
+        // Redirect or do something else upon successful sign-in
+        redirect("/");
       }
     } catch (error) {
-      console.log(error);
+      console.error("Error during login", error);
+      setError("Error during login");
     }
   };
 
@@ -68,7 +81,7 @@ const LoginForm = () => {
               className="outline-none"
               autoComplete="current-password"
             />
-            <button onClick={() => setIsVisible(!isVisible)}>
+            <button type="button" onClick={() => setIsVisible(!isVisible)}>
               <Image
                 src={"/icons/eye.svg"}
                 alt="show-password"
@@ -88,7 +101,10 @@ const LoginForm = () => {
           Forgot password?
         </Link>
       </div>
-      <DarkButton>Sign In</DarkButton>
+      <div className="flex flex-col gap-2">
+        {error && <ErrorMessage>{error}</ErrorMessage>}
+        <DarkButton>Sign In</DarkButton>
+      </div>
     </form>
   );
 };

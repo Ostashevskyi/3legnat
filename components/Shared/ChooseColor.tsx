@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addColor } from "@/redux/slices/cartSlice";
 import { AppDispatch } from "@/redux/store";
@@ -18,6 +18,10 @@ const ChooseColor = ({ colors }: { colors: TColor[] }) => {
   const [activeColor, setActiveColor] = useState<string>(
     colors[0].customData.color
   );
+  useEffect(() => {
+    dispatch(addColor(activeColor));
+  }, []);
+
   return (
     <div className="mb-12">
       <p className="semibold-body-2 text-neutral_04 mb-2">{"Choose Color >"}</p>

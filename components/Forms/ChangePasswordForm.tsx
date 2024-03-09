@@ -8,6 +8,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../Shared/ErrorMessage";
 import DarkButton from "../Buttons/DarkButton";
+import { toast } from "sonner";
 
 const ChangePasswordForm = ({
   password,
@@ -44,9 +45,10 @@ const ChangePasswordForm = ({
 
       if (res.ok) {
         reset();
+        toast.success("Password was changed successfully");
       }
     } catch (error) {
-      console.log(error);
+      toast.error("An error occurred while changing the password ");
     }
   };
 

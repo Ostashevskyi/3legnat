@@ -1,5 +1,6 @@
 import Address from "@/containers/account/address";
 import AccountDetails from "@/containers/account/details";
+import Logout from "@/containers/account/logout";
 import Orders from "@/containers/account/orders";
 import Wishlist from "@/containers/account/wishlist";
 import React from "react";
@@ -14,6 +15,8 @@ const AccountPage = ({ params: { page } }: { params: { page: string } }) => {
       return <Orders />;
     case "wishlist":
       return <Wishlist />;
+    case "logout":
+      return <Logout />;
     default:
       return;
   }

@@ -4,7 +4,7 @@ import React from "react";
 import { generateOrderCode } from "@/utils/generateOrderCode";
 import { Prisma } from "@prisma/client";
 
-const PlaceOrderButton = ({ user_id }: { user_id: string }) => {
+const PlaceOrderButton = ({ user_id }: { user_id: string | undefined }) => {
   const { totalPriceWithDiscount, cart } = useAppSelector(
     (state) => state.cartReducer
   );

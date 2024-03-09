@@ -10,7 +10,7 @@ const BillingCard = ({
   user_id,
 }: {
   userBillingAddress: TUserBillingAddress;
-  user_id: string;
+  user_id: string | undefined;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 

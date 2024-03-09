@@ -11,6 +11,7 @@ import {
 
 import ErrorMessage from "@/components/Shared/ErrorMessage";
 import SubmitFormInput from "../Inputs/SubmitFormInput";
+import { toast } from "sonner";
 
 const AccountDetailsForm = ({ userData }: TUserData) => {
   const {
@@ -32,7 +33,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
       ) {
         const user_id = userData?.user_id;
 
-        await fetch("/api/userinfo", {
+        const res = await fetch("/api/userinfo", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -45,9 +46,13 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
             username,
           }),
         });
+
+        if (res.ok) {
+          toast.success("User data was changed successfully");
+        }
       }
     } catch (error) {
-      console.log(error);
+      toast.error("An error occurred while changing user data ");
     }
   };
 
