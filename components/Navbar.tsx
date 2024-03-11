@@ -16,15 +16,22 @@ import {
   HEADER_OPEN_ICON,
 } from "@/utils/constants";
 import DarkButton from "./Buttons/DarkButton";
+import { signOut, useSession } from "next-auth/react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { fetchShoppingCart } from "@/redux/slices/cartSlice";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     isOpen
       ? document.documentElement.classList.add("disabled")
       : document.documentElement.classList.remove("disabled");
+    dispatch(fetchShoppingCart(session?.user.user_id));
   }, [isOpen]);
 
   return (
@@ -39,13 +46,15 @@ const Navbar = () => {
         }
       >
         <div className="flex justify-between items-center">
-          <Image
-            src={"/logo.png"}
-            alt="logo"
-            width={105}
-            height={24}
-            className="z-50"
-          />
+          <Link href={"/"}>
+            <Image
+              src={"/logo.png"}
+              alt="logo"
+              width={105}
+              height={24}
+              className="z-50"
+            />
+          </Link>
           <div className="lg:hidden">
             <Hamburger size={24} toggle={setIsOpen} toggled={isOpen} />
           </div>
@@ -101,26 +110,34 @@ const Navbar = () => {
             <div>
               <ul className="flex flex-col gap-4 mb-3">
                 {HEADER_OPEN_ICON.map((icon) => (
-                  <div
-                    key={icon.id}
-                    className="flex justify-between border-b border-neutral_03 pb-2 "
-                  >
-                    <p>{icon.title}</p>
-                    <div className="flex gap-1 items-center">
-                      <Image
-                        src={icon.icon}
-                        alt={icon.alt}
-                        width={24}
-                        height={24}
-                      />
-                      <Counter />
-                    </div>
-                  </div>
+                  <button onClick={() => setIsOpen(false)} key={icon.id}>
+                    <Link
+                      href={icon.href}
+                      className="flex justify-between border-b border-neutral_03 pb-2 "
+                    >
+                      <p>{icon.title}</p>
+                      <div className="flex gap-1 items-center">
+                        <Image
+                          src={icon.icon}
+                          alt={icon.alt}
+                          width={24}
+                          height={24}
+                        />
+                        {icon.counter && <Counter />}
+                      </div>
+                    </Link>
+                  </button>
                 ))}
               </ul>
-              <DarkButton>
-                <Link href={"/"}>Sign In</Link>
-              </DarkButton>
+              {session ? (
+                <DarkButton handleClick={() => signOut({ callbackUrl: "/" })}>
+                  Logout
+                </DarkButton>
+              ) : (
+                <Link href={"/login"}>
+                  <DarkButton>Sign In</DarkButton>
+                </Link>
+              )}
               <div className="flex gap-6">
                 <Image
                   src={"/icons/instagram.svg"}

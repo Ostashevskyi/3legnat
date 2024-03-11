@@ -16,13 +16,17 @@ import { TUserBillingAddress } from "@/types/UserAddresses";
 
 import { maskCardNumber } from "@/utils/maskCardNumber";
 import ErrorMessage from "../Shared/ErrorMessage";
+import { toast } from "sonner";
+import DeleteFormButton from "../Buttons/DeleteFormButton";
 
 const BillingForm = ({
   user_id,
   userBillingAddress,
+  withoutButtons,
 }: {
   user_id?: string;
   userBillingAddress: TUserBillingAddress;
+  withoutButtons?: boolean;
 }) => {
   const {
     handleSubmit,
@@ -57,6 +61,11 @@ const BillingForm = ({
             preset_name,
             user_id,
           }),
+        });
+
+        toast.promise(res, {
+          loading: "Updating your billing form...",
+          success: `Your billing form has been successfully updated`,
         });
       }
     } catch (error) {
@@ -158,8 +167,12 @@ const BillingForm = ({
           <ErrorMessage>{errors["expiration_date"].message}</ErrorMessage>
         )}
       </div>
-
-      <SubmitFormInput isSubmitting={isSubmitting} value="Submit" />
+      {!withoutButtons && (
+        <div className="flex gap-2">
+          <SubmitFormInput isSubmitting={isSubmitting} value="Submit" />
+          <DeleteFormButton user_id={user_id} form="billing" />
+        </div>
+      )}
     </form>
   );
 };

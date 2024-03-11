@@ -24,6 +24,7 @@ const config: Config = {
         "auth-bg": "url('/auth-bg.png')",
         "shop-bg": "url('/shop-bg.png')",
         "camera-bg": "url('/camera.png')",
+        "blog-bg": "url('/bg-blog.png')",
       },
       colors: {
         primary_black: "var(--primary_black)",

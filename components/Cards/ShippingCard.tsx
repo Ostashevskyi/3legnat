@@ -10,7 +10,7 @@ const ShippingCard = ({
   user_id,
 }: {
   userShippingAddress: TUserShippingAddress;
-  user_id: string;
+  user_id: string | undefined;
 }) => {
   const [isOpen, setIsOpen] = useState(false);
 

@@ -1,7 +1,6 @@
 export const HEADER_NAV_LINKS = [
   { id: 0, title: "Home", href: "/" },
   { id: 1, title: "Shop", href: "/shop" },
-  { id: 2, title: "Product", href: "/product" },
   { id: 3, title: "Blog", href: "/blog" },
   { id: 4, title: "Contact Us", href: "/contact-us" },
 ];
@@ -15,7 +14,7 @@ export const HEADER_NAV_ICONS = [
     href: "/account/details",
   },
   {
-    id: 3,
+    id: 2,
     icon: "/icons/shopping-bag.svg",
     alt: "shopping-bag",
     href: "/cart",
@@ -26,10 +25,28 @@ export const HEADER_OPEN_ICON = [
   {
     id: 0,
     icon: "/icons/shopping-bag.svg",
+    href: "/cart",
     alt: "shopping-bad",
     title: "Cart",
+    counter: true,
   },
-  { id: 1, icon: "/icons/heart.svg", alt: "heart", title: "Whishlist" },
+  {
+    id: 1,
+    icon: "/icons/heart.svg",
+    alt: "wishlist",
+    href: "/account/wishlist",
+    title: "Wishlist",
+    counter: false,
+  },
+
+  {
+    id: 2,
+    icon: "/icons/user-circle.svg",
+    alt: "user",
+    href: "/account/details",
+    title: "Account",
+    counter: false,
+  },
 ];
 
 export const SOCIALS_ICONS = [

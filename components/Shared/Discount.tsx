@@ -15,10 +15,10 @@ const Discount = () => {
         <p className="semibold-caption-1">30% off storewide — Limited time! </p>
         <span className="hidden lg:flex">
           <Link
-            color="text-secondary_blue buttonXS-text hover:underline"
-            href={"/"}
+            className="text-secondary_blue buttonXS-text hover:underline"
+            href={"/shop"}
           >
-            Shop Now
+            Shop Now →
           </Link>
         </span>
       </div>

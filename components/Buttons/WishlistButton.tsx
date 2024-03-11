@@ -3,6 +3,7 @@ import { TProduct } from "@/types/ProductType";
 import React, { useEffect, useState } from "react";
 import HeartIcon from "../Icons/HeartIcon";
 import { TWishlist } from "@/types/Wishlist";
+import { toast } from "sonner";
 
 const WishlistButton = ({
   product,
@@ -37,6 +38,7 @@ const WishlistButton = ({
 
       if (res.ok) {
         setIsInWishlist(true);
+        toast.success("Added to wishlist");
       }
     }
 
@@ -54,6 +56,7 @@ const WishlistButton = ({
 
       if (res.ok) {
         setIsInWishlist(false);
+        toast.success("Deleted from wishlist");
       }
     }
   };

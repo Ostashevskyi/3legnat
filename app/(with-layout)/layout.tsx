@@ -7,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { AuthProvider } from "../providers";
 import { ReduxProvider } from "@/redux/Provider";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,17 +24,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <header>
-          <Navbar />
-        </header>
         <AuthProvider>
           <ReduxProvider>
+            <header>
+              <Navbar />
+            </header>
             <main className="min-container">{children}</main>
+            <footer>
+              <Footer />
+            </footer>
+            <Toaster expand richColors position="top-right" />
           </ReduxProvider>
         </AuthProvider>
-        <footer>
-          <Footer />
-        </footer>
       </body>
     </html>
   );

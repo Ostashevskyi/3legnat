@@ -49,7 +49,7 @@ const OrderSummary = ({ user_id }: { user_id: string | undefined }) => {
   }, [dispatch, user_id]);
 
   return (
-    <div className="border border-neutral_04 p-4 rounded-md flex flex-col gap-4 mb-6">
+    <div className="border border-neutral_04 p-4 rounded-md flex flex-col gap-4 mb-6 max-h-fit">
       <p className="semibold-body-2">Order Summary</p>
       <div className="mb-6">
         {cart.map((product, index) => {

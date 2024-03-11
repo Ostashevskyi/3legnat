@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 
 import { useForm } from "react-hook-form";
@@ -15,13 +16,17 @@ import {
 } from "@/lib/zodSchema/shipping-form";
 
 import { TUserShippingAddress } from "@/types/UserAddresses";
+import { toast } from "sonner";
+import DeleteFormButton from "../Buttons/DeleteFormButton";
 
 const ShippingForm = ({
   user_id,
   userShippingAddress,
+  withoutButtons,
 }: {
   user_id?: string;
   userShippingAddress: TUserShippingAddress;
+  withoutButtons?: boolean;
 }) => {
   const {
     handleSubmit,
@@ -58,7 +63,7 @@ const ShippingForm = ({
 
     try {
       if (data) {
-        fetch("/api/shipping_address", {
+        const res = fetch("/api/shipping_address", {
           method: userShippingAddress ? "PATCH" : "POST",
           headers: {
             "Content-Type": "application/json",
@@ -75,6 +80,11 @@ const ShippingForm = ({
             preset_name,
             user_id,
           }),
+        });
+
+        toast.promise(res, {
+          loading: "Updating your shipping form...",
+          success: `Your shipping form has been successfully updated`,
         });
       }
     } catch (error) {
@@ -241,8 +251,12 @@ const ShippingForm = ({
           <ErrorMessage>{errors["email"].message}</ErrorMessage>
         )}
       </div>
-
-      <SubmitFormInput isSubmitting={isSubmitting} value="Submit" />
+      {!withoutButtons && (
+        <div className="flex gap-2">
+          <SubmitFormInput isSubmitting={isSubmitting} value="Submit" />
+          <DeleteFormButton user_id={user_id} form="shipping" />
+        </div>
+      )}
     </form>
   );
 };

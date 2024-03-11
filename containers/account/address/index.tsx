@@ -22,10 +22,10 @@ const Address = async () => {
       <div className="flex flex-col gap-6 mb-20 xl:flex-row">
         <BillingCard
           userBillingAddress={userBillingAddress}
-          session={session}
+          user_id={session?.user.user_id}
         />
         <ShippingCard
-          session={session}
+          user_id={session?.user.user_id}
           userShippingAddress={userShippingAddress}
         />
       </div>
