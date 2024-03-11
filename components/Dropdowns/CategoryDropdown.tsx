@@ -33,9 +33,7 @@ const CategoryDropdown = () => {
         onChange={(e) => handleChange(e.target.value)}
       >
         <option value={""}>All Room</option>
-        <option value={"living-room"} className="">
-          Living Room
-        </option>
+        <option value={"living-room"}>Living Room</option>
         <option value={"bedroom"}>Bedroom</option>
         <option value={"bathroom"}>Bathroom</option>
         <option value={"dinning"}>Dinning</option>
