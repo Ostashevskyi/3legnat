@@ -78,3 +78,51 @@ export const PROFILE_LINKS = [
   { id: 3, title: "Wishlist", href: "/account/wishlist" },
   { id: 4, title: "Log out", href: "/account/logout" },
 ];
+
+export const CONTACT_CARDS = [
+  {
+    id: 0,
+    icon: { src: "/icons/store.svg", alt: "store-icon" },
+    title: "Address",
+    text: "234 Hai Trieu, Ho Chi Minh City, Viet Nam",
+  },
+  {
+    id: 1,
+    icon: { src: "/icons/call.svg", alt: "phone-icon" },
+    title: "Contact us",
+    text: "+84 234 567 890",
+  },
+  {
+    id: 2,
+    icon: { src: "/icons/mail.svg", alt: "email-icon" },
+    title: "Email",
+    text: "hello@3legant.com",
+  },
+];
+
+export const VALUES_CARDS = [
+  {
+    id: 0,
+    icon: { src: "/icons/fast-delivery.svg", alt: "delivery-icon" },
+    title: "Free Shipping",
+    text: "Order above $200",
+  },
+  {
+    id: 1,
+    icon: { src: "/icons/money.svg", alt: "money-icon" },
+    title: "Money-back",
+    text: "30 days guarantee",
+  },
+  {
+    id: 2,
+    icon: { src: "/icons/lock.svg", alt: "lock-icon" },
+    title: "Secure Payments",
+    text: "Secured by Stripe",
+  },
+  {
+    id: 3,
+    icon: { src: "/icons/call.svg", alt: "call-icon" },
+    title: "24/7 Support",
+    text: "Phone and Email support",
+  },
+];
