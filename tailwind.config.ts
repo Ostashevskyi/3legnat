@@ -78,6 +78,8 @@ const config: Config = {
   plugins: [
     function ({ addVariant }: { addVariant: any }) {
       addVariant("child-p", "& > p");
+      addVariant("child-td", "& > table > tbody > tr > td");
+      addVariant("child-tr", "& > table > tbody > tr");
     },
   ],
 };

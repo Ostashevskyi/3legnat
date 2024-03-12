@@ -1,7 +1,10 @@
 "use client";
-import { useSearchParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
+
+import { useSearchParams } from "next/navigation";
+
 import { TBlog } from "@/types/Blogs";
+
 import BlogCard from "@/components/Cards/BlogCard";
 
 const BlogsSection = ({ blogs }: { blogs: TBlog[] }) => {
