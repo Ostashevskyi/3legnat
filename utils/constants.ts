@@ -78,3 +78,24 @@ export const PROFILE_LINKS = [
   { id: 3, title: "Wishlist", href: "/account/wishlist" },
   { id: 4, title: "Log out", href: "/account/logout" },
 ];
+
+export const CONTACT_CARDS = [
+  {
+    id: 0,
+    icon: { src: "/icons/store.svg", alt: "store-icon" },
+    title: "Address",
+    text: "234 Hai Trieu, Ho Chi Minh City, Viet Nam",
+  },
+  {
+    id: 0,
+    icon: { src: "/icons/call.svg", alt: "phone-icon" },
+    title: "Contact us",
+    text: "+84 234 567 890",
+  },
+  {
+    id: 0,
+    icon: { src: "/icons/mail.svg", alt: "email-icon" },
+    title: "Email",
+    text: "hello@3legant.com",
+  },
+];
