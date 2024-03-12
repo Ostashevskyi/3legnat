@@ -11,6 +11,5 @@ export type TBlog = {
   slug: string;
   smallImage: Image;
   title: string;
-  bigImage: Image;
   author: { name: string };
 };

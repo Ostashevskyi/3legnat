@@ -1,9 +1,9 @@
 import { performRequest } from "@/lib/datocms";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const BLOGS = `
-query Blogs {
-    allBlogs {
+query BLOG($slug: String){
+    allBlogs(filter: {slug: {eq: $slug}}) {
       blogData
       date
       id
@@ -14,24 +14,18 @@ query Blogs {
         height
       }
       title
-      bigImage {
-        url
-        width
-        height
-      }
       author {
         name
-        }
       }
-}`;
+    }
+  }`;
 
-export const GET = async (req: NextRequest) => {
+export const POST = async (req: Request) => {
   try {
-    const user_id = req.nextUrl.searchParams.get("user_id") as string;
-
+    const { slug } = await req.json();
     const {
       data: { allBlogs },
-    } = await performRequest({ query: BLOGS });
+    } = await performRequest({ query: BLOGS, variables: { slug } });
 
     return NextResponse.json({ allBlogs }, { status: 200 });
   } catch (error) {

@@ -1,14 +1,13 @@
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
-
-export const getBlog = async () => {
-  const session = await getServerSession(options);
-
+export const getBlog = async (slug?: string) => {
   const res = await fetch(`http://localhost:3000/api/blog`, {
-    method: "GET",
+    method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
+    body: JSON.stringify({
+      slug,
+    }),
+    cache: "no-store",
   });
 
   const data = await res.json();
