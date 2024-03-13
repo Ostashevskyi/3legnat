@@ -25,7 +25,7 @@ const ReviewsFilterDropdown = () => {
       onChange={(e) => handleChange(e.target.value)}
       className="border w-full py-3 px-4 rounded-md mb-10 lg:max-w-[256px]"
     >
-      <option value="newest">Newest</option>
+      <option value="">Newest</option>
       <option value="higher">Higher rating</option>
       <option value="lower">Lower rating </option>
     </select>

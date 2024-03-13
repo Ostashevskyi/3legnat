@@ -8,6 +8,7 @@ import ProductInfo from "@/containers/product-page/productInfo";
 import Newsletter from "@/components/Newsletter";
 import AdditionalInfo from "@/containers/product-page/additionalInfoDesktop";
 import { getWishlist } from "@/hooks/getWishlist";
+import { TProduct } from "@/types/ProductType";
 
 const PRODUCT = `
 query Product($slug: String) {
@@ -71,7 +72,10 @@ const ProductPage = async ({
           <ProductInfo productInfo={product} wishlist={wishlist} />
         </div>
         <div className="hidden lg:block p-mobile mb-10">
-          <AdditionalInfo additionalInfo={additionalInfo} />
+          <AdditionalInfo
+            additionalInfo={additionalInfo}
+            product={product as TProduct}
+          />
         </div>
       </div>
       <Newsletter />

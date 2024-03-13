@@ -58,7 +58,7 @@ const AddToCartButton = ({
       }
     };
     fetchCart();
-  }, [color, cart, loading]);
+  }, [loading, color]);
 
   const handleClick = async () => {
     setLoading(true);

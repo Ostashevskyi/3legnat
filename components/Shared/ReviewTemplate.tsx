@@ -1,23 +1,62 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import StarsRating from "./StarsRating";
+import { AppDispatch, useAppSelector } from "@/redux/store";
+import { useDispatch } from "react-redux";
+import { fetchReview } from "@/redux/slices/reviewSlice";
+import { TProduct } from "@/types/ProductType";
+import { useSearchParams } from "next/navigation";
+import { TReview } from "@/types/Review";
 
-const ReviewTemplate = () => {
+const ReviewTemplate = ({ product }: { product: TProduct }) => {
+  const { reviews } = useAppSelector((state) => state.reviewReducer);
+  const dispatch = useDispatch<AppDispatch>();
+  const [filteredReviews, setFilteredReviews] = useState<TReview[]>();
+
+  useEffect(() => {
+    dispatch(fetchReview(product.title));
+  }, [dispatch]);
+
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const filter = searchParams.get("reviewSort");
+
+    switch (filter) {
+      case "higher":
+        const higherReview = reviews
+          .slice()
+          .sort((a, b) => b.rating - a.rating);
+        setFilteredReviews(higherReview);
+        break;
+      case "lower":
+        const lowerReview = reviews.slice().sort((a, b) => a.rating - b.rating);
+        setFilteredReviews(lowerReview);
+        break;
+      default:
+        setFilteredReviews(reviews.slice().reverse());
+        break;
+    }
+  }, [searchParams, reviews]);
+
   return (
-    <section className="border-b pb-4 mb-6">
-      <div className="flex gap-4 mb-4">
-        <Image src={"/review.png"} alt="alt" width={72} height={72} />
-        <div className="flex flex-col gap-4">
-          <p className="semibold-body-1">Sofia Harvetz</p>
-          <StarsRating readOnly />
-        </div>
-      </div>
-      <p className="regular-body-2 text-neutral_05">
-        I bought it 3 weeks ago and now come back just to say “Awesome Product”.
-        I really enjoy it. At vero eos et accusamus et iusto odio dignissimos
-        ducimus qui blanditiis praesentium voluptatum deleniti atque corrupt et
-        quas molestias excepturi sint non provident.
-      </p>
+    <section className=" mb-6 flex flex-col gap-6">
+      {filteredReviews?.map((el, index) => {
+        const { rating, review, username, user_image } = el;
+        return (
+          <div key={index} className="border-b pb-4">
+            <div className="flex gap-4 mb-4">
+              <Image src={user_image} alt="alt" width={72} height={72} />
+              <div className="flex flex-col gap-4">
+                <p className="semibold-body-1">{username}</p>
+                <StarsRating readOnly rating={rating} />
+              </div>
+            </div>
+            <p className="regular-body-2 text-neutral_05">{review}</p>
+          </div>
+        );
+      })}
     </section>
   );
 };

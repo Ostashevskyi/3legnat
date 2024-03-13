@@ -11,6 +11,8 @@ import WishlistButton from "@/components/Buttons/WishlistButton";
 import AddToCartButton from "@/components/Buttons/AddToCartButton";
 import ProductPageAccordion from "@/components/Accordions/ProductPageAccordion";
 import { TWishlist } from "@/types/Wishlist";
+import getReviews from "@/hooks/getReviews";
+import { TReview } from "@/types/Review";
 
 const ProductInfo = async ({
   productInfo,
@@ -33,13 +35,26 @@ const ProductInfo = async ({
     mainPhoto,
   } = productInfo;
 
+  const { reviews } = await getReviews(title);
+
+  const calculateAverageRating = (reviews: TReview[]) => {
+    if (reviews.length) {
+      const sumOfRatings = reviews
+        ?.map((el) => el.rating)
+        ?.reduce((prev, next) => prev + next);
+      return sumOfRatings / reviews.length;
+    } else {
+      return 0;
+    }
+  };
+
   const userData = await getUserDataById();
   return (
     <section className="p-mobile">
       <div className="mb-6">
         <div className="flex gap-3 items-center mb-4">
-          <StarsRating readOnly />
-          <span className="regular-caption-2">0 Reviews</span>
+          <StarsRating readOnly rating={calculateAverageRating(reviews)} />
+          <span className="regular-caption-2">{reviews.length} Reviews</span>
         </div>
         <div className="flex flex-col gap-4">
           <h4>{title}</h4>
@@ -66,7 +81,7 @@ const ProductInfo = async ({
           <WishlistButton
             main
             product={productInfo}
-            user_id={userData.user_id}
+            user_id={userData?.user_id}
             wishlist={wishlist}
           />
         </div>
@@ -74,7 +89,7 @@ const ProductInfo = async ({
           title={title}
           price={price}
           slug={slug}
-          user_id={userData.user_id}
+          user_id={userData?.user_id}
           mainPhoto={mainPhoto}
         />
       </div>
@@ -85,7 +100,10 @@ const ProductInfo = async ({
         <p>{category}</p>
       </div>
       <div className="lg:hidden mb-10">
-        <ProductPageAccordion additionalInfo={additionalInfo} />
+        <ProductPageAccordion
+          additionalInfo={additionalInfo}
+          product={productInfo}
+        />
       </div>
     </section>
   );
