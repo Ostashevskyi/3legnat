@@ -1,9 +1,10 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
-import { URL } from "@/utils/constants";
+
 import { getServerSession } from "next-auth";
 
 export const getWishlist = async () => {
   const session = await getServerSession(options);
+  const URL = process.env.NEXT_ENV;
 
   const res = await fetch(
     `${URL}/api/wishlist?user_id=${session?.user.user_id}`,

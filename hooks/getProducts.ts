@@ -1,6 +1,6 @@
-import { URL } from "@/utils/constants";
-
 const getProducts = async () => {
+  const URL = process.env.NEXT_ENV;
+
   const res = await fetch(`${URL}/api/products`, {
     method: "GET",
     headers: {
