@@ -6,15 +6,14 @@ export const HEADER_NAV_LINKS = [
 ];
 
 export const HEADER_NAV_ICONS = [
-  { id: 0, icon: "/icons/search.svg", alt: "search", href: "/search" },
   {
-    id: 1,
+    id: 0,
     icon: "/icons/user-circle.svg",
     alt: "user",
     href: "/account/details",
   },
   {
-    id: 2,
+    id: 1,
     icon: "/icons/shopping-bag.svg",
     alt: "shopping-bag",
     href: "/cart",

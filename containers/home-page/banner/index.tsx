@@ -25,7 +25,7 @@ const Banner = () => {
             It’s more affordable than ever to give every room in your home a
             stylish makeover
           </p>
-          <ArrowLink color="#000" text="Shop Now" />
+          <ArrowLink color="#000" text="Shop Now" href="shop" />
         </div>
       </section>
     </div>

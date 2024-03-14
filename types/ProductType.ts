@@ -19,7 +19,9 @@ export type TProduct = {
   onsale: boolean;
   discountNumber?: number;
   price: number;
-  category: string;
+  category: {
+    category: string;
+  };
   slug: string;
   sku: number;
 };

@@ -105,7 +105,7 @@ const ShippingForm = ({
           {...register("first_name")}
           type={"text"}
           defaultValue={userShippingAddress?.first_name}
-          name={"first_name"}
+          id={"first_name"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["first_name"] && (
@@ -124,7 +124,7 @@ const ShippingForm = ({
           {...register("last_name")}
           type={"text"}
           defaultValue={userShippingAddress?.last_name}
-          name={"last_name"}
+          id={"last_name"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["last_name"] && (
@@ -141,7 +141,7 @@ const ShippingForm = ({
         </label>
         <select
           {...register("country")}
-          name="country"
+          id="country"
           defaultValue={userShippingAddress?.country}
           className="border border-neutral_04 rounded-md py-2 px-4"
         >
@@ -168,7 +168,7 @@ const ShippingForm = ({
           {...register("street_address")}
           type={"text"}
           defaultValue={userShippingAddress?.street_address}
-          name={"street_address"}
+          id={"street_address"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["street_address"] && (
@@ -187,7 +187,7 @@ const ShippingForm = ({
           {...register("postcode")}
           type={"text"}
           defaultValue={userShippingAddress?.postcode}
-          name={"postcode"}
+          id={"postcode"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["postcode"] && (
@@ -206,7 +206,7 @@ const ShippingForm = ({
           {...register("city")}
           type={"text"}
           defaultValue={userShippingAddress?.city}
-          name={"city"}
+          id={"city"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["city"] && (
@@ -225,7 +225,7 @@ const ShippingForm = ({
           {...register("phone")}
           type={"tel"}
           defaultValue={userShippingAddress?.phone}
-          name={"phone"}
+          id={"phone"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["phone"] && (
@@ -244,7 +244,7 @@ const ShippingForm = ({
           {...register("email")}
           type={"email"}
           defaultValue={userShippingAddress?.email}
-          name={"email"}
+          id={"email"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["email"] && (

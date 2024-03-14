@@ -3,7 +3,10 @@ import { ProductPageAccordionProps } from "@/components/Accordions/ProductPageAc
 import React, { useMemo, useState } from "react";
 import Reviews from "../reviews";
 
-const AdditionalInfo = ({ additionalInfo }: ProductPageAccordionProps) => {
+const AdditionalInfo = ({
+  additionalInfo,
+  product,
+}: ProductPageAccordionProps) => {
   const [isActive, setIsActive] = useState("");
 
   const handleClick = (name: string) => {
@@ -20,11 +23,12 @@ const AdditionalInfo = ({ additionalInfo }: ProductPageAccordionProps) => {
           />
         );
       case "reviews":
-        return <Reviews />;
+        return <Reviews product={product} />;
       default:
         return;
     }
   }, [isActive]);
+
   return (
     <div>
       <div className="border-b flex gap-20 text-black/50 buttonM-text mb-12">

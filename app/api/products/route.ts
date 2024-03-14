@@ -30,7 +30,9 @@ query Products {
     onsale
     discountNumber
     price
-    category
+    category {
+      category
+    }
     slug
     sku
   }

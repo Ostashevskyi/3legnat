@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -51,9 +51,23 @@ const SliderContent = ({ count, text, title, name }: SliderContentProps) => {
 };
 
 const CartSlider = ({ title }: TInfo) => {
+  const { completedStages } = useAppSelector((state) => state.cartReducer);
+  const [initialSlide, setInitialSlide] = useState<number>(0);
+
+  useEffect(() => {
+    const initialSlide = completedStages.includes("Checkout")
+      ? 2
+      : completedStages.includes("Cart")
+      ? 1
+      : 0;
+
+    setInitialSlide(initialSlide);
+  }, [completedStages]);
+
   return (
     <div>
       <Swiper
+        initialSlide={initialSlide}
         slidesPerView={1}
         spaceBetween={45}
         breakpoints={{ 700: { slidesPerView: 3 } }}

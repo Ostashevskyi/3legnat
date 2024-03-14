@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 
-import StarsRating from "@/components/Shared/StarsRating";
 import type { TProduct } from "@/types/ProductType";
 import Link from "next/link";
 import WishlistButton from "../Buttons/WishlistButton";
@@ -63,7 +62,6 @@ const ProductCard = ({
         </div>
       </div>
       <div className={`${grid === "row" ? "max-w-[100px]" : "max-w-fit"}`}>
-        <StarsRating readOnly />
         <Link href={`/shop/${product.slug}`}>
           <p className={`semibold-body-2 my-1  `}>{product.title}</p>
         </Link>

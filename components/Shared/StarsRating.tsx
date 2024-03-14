@@ -7,26 +7,24 @@ import { Rating as ReactRating } from "@smastrom/react-rating";
 
 type StarsRating = {
   readOnly?: boolean;
+  rating?: number;
 };
 
-const StarsRating = ({ readOnly }: StarsRating) => {
-  const [rating, setRating] = useState(0);
+export const StarsStyles = {
+  itemShapes: ThinRoundedStar,
+  activeStrokeColor: "#000",
+  activeFillColor: "#000",
+  inactiveFillColor: "#fff",
+  inactiveStrokeColor: "#000",
+  itemStrokeWidth: 1,
+};
 
-  const StarsStyles = {
-    itemShapes: ThinRoundedStar,
-    activeStrokeColor: "#000",
-    activeFillColor: "#000",
-    inactiveFillColor: "#fff",
-    inactiveStrokeColor: "#000",
-    itemStrokeWidth: 1,
-  };
-
+const StarsRating = ({ readOnly, rating }: StarsRating) => {
   return (
     <ReactRating
       style={{ maxWidth: 80 }}
       itemStyles={StarsStyles}
-      value={rating}
-      onChange={setRating}
+      value={rating as number}
       readOnly={readOnly}
     />
   );

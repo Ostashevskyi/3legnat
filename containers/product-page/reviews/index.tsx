@@ -2,27 +2,23 @@ import ShowMoreButton from "@/components/Buttons/ShowMoreButton";
 import ReviewsFilterDropdown from "@/components/Dropdowns/ReviewsFilterDropdown";
 import ReviewsInput from "@/components/Inputs/ReviewsInput";
 import ReviewTemplate from "@/components/Shared/ReviewTemplate";
-import StarsRating from "@/components/Shared/StarsRating";
+import { TProduct } from "@/types/ProductType";
 import React from "react";
 
-const Reviews = () => {
+const Reviews = ({ product }: { product: TProduct }) => {
   return (
     <section>
       <div className="mb-8">
         <div className="mb-8">
           <h6 className="mb-6">Customer Reviews</h6>
-          <StarsRating readOnly={false} />
         </div>
-        <ReviewsInput />
+        <ReviewsInput product={product} />
       </div>
       <div className="lg:flex lg:justify-between">
-        <h6 className="mb-4">0 Reviews</h6>
+        <h6 className="mb-4">Reviews</h6>
         <ReviewsFilterDropdown />
       </div>
-      <ReviewTemplate />
-      <div className="flex justify-center">
-        <ShowMoreButton>Load More</ShowMoreButton>
-      </div>
+      <ReviewTemplate product={product} />
     </section>
   );
 };

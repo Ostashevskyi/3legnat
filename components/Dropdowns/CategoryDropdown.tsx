@@ -27,7 +27,7 @@ const CategoryDropdown = () => {
         Categories
       </label>
       <select
-        name="rooms"
+        id="rooms"
         defaultValue={searchParams.get("category")?.toString()}
         className="border rounded-md h-12 px-4 text-neutral_04 outline outline-neutral_04"
         onChange={(e) => handleChange(e.target.value)}

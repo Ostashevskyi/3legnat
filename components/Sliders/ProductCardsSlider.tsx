@@ -6,8 +6,16 @@ import ProductCard from "@/components/Cards/ProductCard";
 
 import "swiper/css";
 import "swiper/css/scrollbar";
+import { TProduct } from "@/types/ProductType";
+import { TWishlist } from "@/types/Wishlist";
 
-const ProductCardsSlider = () => {
+const ProductCardsSlider = ({
+  products,
+  wishlist,
+}: {
+  products: TProduct[];
+  wishlist: TWishlist[];
+}) => {
   return (
     <Swiper
       className="product-slider mb-12"
@@ -23,27 +31,13 @@ const ProductCardsSlider = () => {
       modules={[Scrollbar]}
       spaceBetween={24}
     >
-      {/* <SwiperSlide>
-        <ProductCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <ProductCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <ProductCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <ProductCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <ProductCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <ProductCard />
-      </SwiperSlide>
-      <SwiperSlide>
-        <ProductCard />
-      </SwiperSlide> */}
+      {products.map((product, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <ProductCard product={product} wishlist={wishlist} />
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };

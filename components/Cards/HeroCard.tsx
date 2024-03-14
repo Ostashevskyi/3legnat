@@ -25,7 +25,7 @@ const HeroCards = ({ variant, title, image }: HeroCard) => {
         }
       >
         <h5 className="mb-3">{title}</h5>
-        <ArrowLink color={"text-black"} text="Shop Now" />
+        <ArrowLink color={"text-black"} text="Shop Now" href="shop" />
       </section>
       <Image src={image} alt="section_image" width={548} height={664} />
     </div>

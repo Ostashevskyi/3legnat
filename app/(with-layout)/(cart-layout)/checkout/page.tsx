@@ -11,7 +11,6 @@ import { getUserShippingAddressById } from "@/hooks/getUserShippingAddressById";
 import BillingCard from "@/components/Cards/BillingCard";
 import ShippingCard from "@/components/Cards/ShippingCard";
 import PlaceOrderButton from "@/components/Buttons/PlaceOrderButton";
-import DarkButton from "@/components/Buttons/DarkButton";
 
 const Checkout = async () => {
   const userInfo = await getUserDataById();
@@ -56,10 +55,10 @@ const Checkout = async () => {
           </Link>
         )}
       </form>
-      <div>
+      <div className="mb-20">
         <OrderSummary user_id={userInfo?.user_id} />
         {userBillingAddress && userShippingAddress && (
-          <Link href={"/order-complete"} className="lg:hidden mb-20">
+          <Link href={"/order-complete"} className="lg:hidden">
             <PlaceOrderButton user_id={userInfo.user_id} />
           </Link>
         )}
