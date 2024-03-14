@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import ErrorMessage from "../Shared/ErrorMessage";
 import DarkButton from "../Buttons/DarkButton";
 import Link from "next/link";
+import { toast } from "sonner";
 
 const ForgotPasswordForm = ({ email }: { email: string | undefined }) => {
   const {
@@ -36,6 +37,7 @@ const ForgotPasswordForm = ({ email }: { email: string | undefined }) => {
 
       if (res.ok) {
         reset();
+        toast.success("Password was successfully changed");
       }
     } catch (error) {
       console.log(error);
@@ -59,7 +61,9 @@ const ForgotPasswordForm = ({ email }: { email: string | undefined }) => {
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors.newPassword && (
-          <ErrorMessage>{errors.newPassword?.message}</ErrorMessage>
+          <div className="max-w-[250px]">
+            <ErrorMessage>{errors.newPassword?.message}</ErrorMessage>
+          </div>
         )}
       </div>
       <div className="flex flex-col gap-3">
@@ -77,7 +81,9 @@ const ForgotPasswordForm = ({ email }: { email: string | undefined }) => {
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors.repeatNewPassword && (
-          <ErrorMessage>{errors.repeatNewPassword?.message}</ErrorMessage>
+          <div className="max-w-[250px]">
+            <ErrorMessage>{errors.repeatNewPassword?.message}</ErrorMessage>
+          </div>
         )}
       </div>
       <DarkButton>

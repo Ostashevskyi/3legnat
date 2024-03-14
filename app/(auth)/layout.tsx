@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 
 import "@/app/globals.css";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function AuthLayout({
             />
           </div>
           {children}
+          <Toaster expand richColors position="top-right" />
         </div>
       </body>
     </html>
