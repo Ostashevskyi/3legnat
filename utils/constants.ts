@@ -128,6 +128,6 @@ export const VALUES_CARDS = [
 
 export const URL =
   process.env.NEXT_ENV === "develop"
-    ? "http://localhost:3000/"
+    ? "http://localhost:3000"
     : process.env.NEXT_ENV === "production" &&
       "https://3legant-ostashevskyi.netlify.app";
