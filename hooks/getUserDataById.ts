@@ -1,4 +1,5 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
+
 import { getServerSession } from "next-auth";
 
 type TUserData = {
@@ -16,9 +17,10 @@ type TUserData = {
 
 export const getUserDataById = async () => {
   const session = await getServerSession(options);
+  const URL = process.env.NEXT_ENV;
 
   const res = await fetch(
-    `http://localhost:3000/api/userinfo?user_id=${session?.user.user_id}`,
+    `${URL}/api/userinfo?user_id=${session?.user.user_id}`,
     {
       method: "GET",
       headers: {

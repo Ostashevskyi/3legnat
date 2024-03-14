@@ -12,6 +12,7 @@ const nextConfig = {
   },
   experimental: {
     serverComponentsExternalPackages: ["@prisma/client", "bcrypt"],
+    missingSuspenseWithCSRBailout: false,
   },
 };
 

@@ -96,7 +96,10 @@ const LoginForm = () => {
       </div>
 
       <div className="flex justify-between items-center mb-8">
-        <Link href={"/"} className="semibold-caption-2 text-neutral_07">
+        <Link
+          href={"/forgot-password"}
+          className="semibold-caption-2 text-neutral_07"
+        >
           Forgot password?
         </Link>
       </div>

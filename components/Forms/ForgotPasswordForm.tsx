@@ -1,43 +1,34 @@
-"use client";
 import {
-  TChangePasswordSchema,
-  changePasswordSchema,
-} from "@/lib/zodSchema/change-password";
+  TForgotPasswordSchema,
+  forgotPasswordSchema,
+} from "@/lib/zodSchema/forgot-password";
 import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../Shared/ErrorMessage";
 import DarkButton from "../Buttons/DarkButton";
-import { toast } from "sonner";
+import Link from "next/link";
 
-const ChangePasswordForm = ({
-  password,
-  email,
-}: {
-  password: string;
-  email: string;
-}) => {
+const ForgotPasswordForm = ({ email }: { email: string | undefined }) => {
   const {
     handleSubmit,
     register,
     reset,
     formState: { errors },
-  } = useForm<TChangePasswordSchema>({
-    resolver: zodResolver(changePasswordSchema),
+  } = useForm<TForgotPasswordSchema>({
+    resolver: zodResolver(forgotPasswordSchema),
   });
 
-  const onSubmit = async (data: TChangePasswordSchema) => {
-    const { oldPassword, newPassword } = data;
-
+  const onSubmit = async (data: TForgotPasswordSchema) => {
     try {
-      const res = await fetch("/api/changePassword", {
+      const { newPassword } = data;
+
+      const res = await fetch("/api/forgotPassword", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          oldPassword,
-          currentPassword: password,
           newPassword,
           email,
         }),
@@ -45,39 +36,14 @@ const ChangePasswordForm = ({
 
       if (res.ok) {
         reset();
-        toast.success("Password was changed successfully");
       }
     } catch (error) {
-      toast.error("An error occurred while changing the password ");
+      console.log(error);
     }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col gap-6 mb-20"
-    >
-      <p className="semibold-body-1">Password</p>
-
-      <div className="flex flex-col gap-3">
-        <label
-          htmlFor="oldPassword"
-          className="text-xs leading-3 uppercase text-neutral_04 font-bold"
-        >
-          Old password
-        </label>
-        <input
-          {...register("oldPassword")}
-          id="oldPassword"
-          type="password"
-          placeholder="Old password"
-          className="border w-full px-4 py-2 outline-none rounded-md"
-        />
-        {errors.oldPassword && (
-          <ErrorMessage>{errors.oldPassword?.message}</ErrorMessage>
-        )}
-      </div>
-
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6">
       <div className="flex flex-col gap-3">
         <label
           htmlFor="newPassword"
@@ -96,7 +62,6 @@ const ChangePasswordForm = ({
           <ErrorMessage>{errors.newPassword?.message}</ErrorMessage>
         )}
       </div>
-
       <div className="flex flex-col gap-3">
         <label
           htmlFor="repeatNewPassword"
@@ -115,14 +80,14 @@ const ChangePasswordForm = ({
           <ErrorMessage>{errors.repeatNewPassword?.message}</ErrorMessage>
         )}
       </div>
-
-      <div className="max-w-[183px]">
-        <DarkButton>
-          <input type="submit" value={"Save changes"} />
-        </DarkButton>
-      </div>
+      <DarkButton>
+        <input type="submit" value={"Recover password"} />
+      </DarkButton>
+      <Link className="text-neutral_04" href={"/login"}>
+        Back to login page
+      </Link>
     </form>
   );
 };
 
-export default ChangePasswordForm;
+export default ForgotPasswordForm;
