@@ -1,0 +1,96 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  password String
+  username String
+  image    String  @default("https://www.datocms-assets.com/120281/1709117782-pngwing-com.png")
+  lastName String?
+  name     String
+  user_id  String  @unique @db.Uuid
+}
+
+model BillingAddress {
+  id              Int    @id @default(autoincrement())
+  preset_name     String
+  first_name      String
+  last_name       String
+  card_number     String
+  cvv             String
+  expiration_date String
+  user_id         String @unique @db.Uuid
+}
+
+model ShippingAddress {
+  id             Int    @id @default(autoincrement())
+  preset_name    String
+  first_name     String
+  last_name      String
+  country        String
+  street_address String
+  postcode       String
+  city           String
+  phone          String @unique
+  email          String @unique
+  user_id        String @unique @db.Uuid
+}
+
+model ShoppingCart {
+  id              Int     @id @default(autoincrement())
+  user_id         String  @db.Uuid
+  product_name    String
+  quantity        Int
+  price           Int
+  total_price     Int
+  color           String
+  slug            String
+  photoUrl        String
+  delivery_price  Int
+  coupon_title    String?
+  coupon_discount Int?
+}
+
+model Coupouns {
+  id              Int    @id @default(autoincrement())
+  title           String
+  discount_amount Int
+}
+
+model Order {
+  id         Int      @id @default(autoincrement())
+  order_code String   @unique
+  date       DateTime @default(now())
+  total      Int
+  products   Json
+  user_id    String
+  status     String
+}
+
+model Wishlist {
+  id            Int    @id @default(autoincrement())
+  image         String
+  product_title String
+  price         Int
+  user_id       String
+  slug          String
+}
+
+model Reviews {
+  id         Int      @id @default(autoincrement())
+  product    String
+  review     String
+  username   String
+  email      String
+  user_id    String
+  user_image String
+  rating     Int
+  date       DateTime @default(now())
+}
