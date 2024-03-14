@@ -12,7 +12,7 @@ const DarkButton = ({
   return (
     <button
       onClick={handleClick}
-      className={`w-full min-h-12 bg-neutral_07 ${
+      className={`w-full min-h-12 bg-neutral_07 cursor-pointer ${
         rounded ? "rounded-full" : "rounded-md"
       } text-white`}
     >

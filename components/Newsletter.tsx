@@ -3,7 +3,7 @@ import React from "react";
 
 const Newsletter = () => {
   return (
-    <section className="bg-newsletter-bg bg-center py-24">
+    <section className="bg-newsletter-bg bg-center bg-no-repeat py-24">
       <div className="p-mobile text-center">
         <p className="text-28 leading-34 tracking-tighter mb-2 font-medium lg:text-40 lg:leading-44 ">
           Join Our Newsletter

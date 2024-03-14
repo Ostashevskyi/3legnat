@@ -55,7 +55,7 @@ const RadioInput = ({
         className="flex justify-between flex-1 semibold-caption-1"
       >
         <p>{title}</p>
-        <p>{price && price >= 0 ? `+${price?.toFixed(2)}` : ""}</p>
+        <p>{price && price >= 0 ? `+${price?.toFixed(2)}$` : ""}</p>
       </label>
     </div>
   );
