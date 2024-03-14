@@ -29,13 +29,17 @@ const AddToCartButton = ({
 }: AddToCartProps) => {
   const [loading, setLoading] = useState<boolean>();
   const [inCart, setInCart] = useState<TCartProduct[]>();
-  const { color, cart } = useAppSelector((state) => state.cartReducer);
+  const { color } = useAppSelector((state) => state.cartReducer);
   const { url } = mainPhoto;
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const fetchCart = async () => {
       try {
+        if (!user_id) {
+          return;
+        }
+
         const res = await fetch(`/api/cart?user_id=${user_id}`, {
           method: "GET",
           headers: {
@@ -61,8 +65,12 @@ const AddToCartButton = ({
   }, [loading, color]);
 
   const handleClick = async () => {
-    setLoading(true);
     try {
+      if (!user_id) {
+        toast.info("You must be logged in to add to cart");
+        return;
+      }
+      setLoading(true);
       const res = await fetch("/api/cart", {
         method: "POST",
         headers: {

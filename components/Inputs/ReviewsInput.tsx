@@ -36,7 +36,7 @@ const ReviewsInput = ({ product }: { product: TProduct }) => {
     const { review } = data;
     try {
       if (!session) {
-        toast.info("You need to be registered to leave a feedback");
+        toast.info("You must be logged in to post a review");
         return;
       }
 

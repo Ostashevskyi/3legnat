@@ -13,8 +13,25 @@ const CardSection = ({
   wishlist: TWishlist[];
 }) => {
   const [grid, setGrid] = useState<unknown>();
+  const [filteredProducts, setFilteredProducts] = useState<TProduct[]>();
 
   const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const category = searchParams.get("category") as string;
+
+    if (!category) {
+      setFilteredProducts(data);
+      return;
+    }
+
+    const filteredProducts = data.filter(
+      (el) =>
+        el.category.category.toLocaleLowerCase() === category.replace("-", " ")
+    );
+
+    setFilteredProducts(filteredProducts);
+  }, [searchParams.get("category")]);
 
   useEffect(() => {
     setGrid(searchParams.get("grid"));
@@ -31,7 +48,7 @@ const CardSection = ({
   ${grid === "grid9" && "grid-cols-6"} 
   `}
     >
-      {data?.map((product, index) => (
+      {filteredProducts?.map((product, index) => (
         <ProductCard product={product} key={index} wishlist={wishlist} />
       ))}
     </div>

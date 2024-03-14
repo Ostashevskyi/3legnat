@@ -1,5 +1,5 @@
-const getProducts = async () => {
-  const res = await fetch(`http://localhost:3000/api/products`, {
+const getArticles = async () => {
+  const res = await fetch(`http://localhost:3000/api/articles`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -10,4 +10,4 @@ const getProducts = async () => {
   return data;
 };
 
-export default getProducts;
+export default getArticles;

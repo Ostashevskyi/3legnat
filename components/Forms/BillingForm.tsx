@@ -86,7 +86,7 @@ const BillingForm = ({
           {...register("first_name")}
           type={"text"}
           defaultValue={userBillingAddress?.first_name}
-          name={"first_name"}
+          id={"first_name"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["first_name"] && (
@@ -105,7 +105,7 @@ const BillingForm = ({
           {...register("last_name")}
           type={"text"}
           defaultValue={userBillingAddress?.last_name}
-          name={"last_name"}
+          id={"last_name"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["last_name"] && (
@@ -124,7 +124,7 @@ const BillingForm = ({
           {...register("card_number")}
           type={"text"}
           defaultValue={userBillingAddress?.card_number}
-          name={"card_number"}
+          id={"card_number"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["card_number"] && (
@@ -143,7 +143,7 @@ const BillingForm = ({
           {...register("cvv")}
           type={"text"}
           defaultValue={userBillingAddress?.cvv}
-          name={"cvv"}
+          id={"cvv"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["cvv"] && <ErrorMessage>{errors["cvv"].message}</ErrorMessage>}
@@ -160,7 +160,7 @@ const BillingForm = ({
           {...register("expiration_date")}
           type={"text"}
           defaultValue={userBillingAddress?.expiration_date}
-          name={"expiration_date"}
+          id={"expiration_date"}
           className="border w-full px-4 py-2 outline-none rounded-md"
         />
         {errors["expiration_date"] && (

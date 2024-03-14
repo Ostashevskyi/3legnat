@@ -22,6 +22,10 @@ const WishlistButton = ({
     const { mainPhoto, title, price } = product;
 
     if (!isInWishlist) {
+      if (!user_id) {
+        toast.info("You must be logged in to add to wishlist");
+        return;
+      }
       const res = await fetch("/api/wishlist", {
         method: "POST",
         headers: {

@@ -39,7 +39,9 @@ query Product($slug: String) {
     onsale
     discountNumber
     price
-    category
+    category {
+      category
+    }
     slug
     sku
   }

@@ -97,7 +97,7 @@ const ProductInfo = async ({
         <p className="uppercase text-neutral_04">SKU</p>
         <p>{sku}</p>
         <p className="uppercase text-neutral_04">Category</p>
-        <p>{category}</p>
+        <p>{category.category}</p>
       </div>
       <div className="lg:hidden mb-10">
         <ProductPageAccordion

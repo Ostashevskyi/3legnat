@@ -68,7 +68,7 @@ const ChangePasswordForm = ({
         </label>
         <input
           {...register("oldPassword")}
-          name="oldPassword"
+          id="oldPassword"
           type="password"
           placeholder="Old password"
           className="border w-full px-4 py-2 outline-none rounded-md"
@@ -87,7 +87,7 @@ const ChangePasswordForm = ({
         </label>
         <input
           {...register("newPassword")}
-          name="newPassword"
+          id="newPassword"
           type="password"
           placeholder="New password"
           className="border w-full px-4 py-2 outline-none rounded-md"
@@ -106,7 +106,7 @@ const ChangePasswordForm = ({
         </label>
         <input
           {...register("repeatNewPassword")}
-          name="repeatNewPassword"
+          id="repeatNewPassword"
           type="password"
           placeholder="Repeat new password"
           className="border w-full px-4 py-2 outline-none rounded-md"

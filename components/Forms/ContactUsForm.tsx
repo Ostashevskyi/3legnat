@@ -8,18 +8,21 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import ErrorMessage from "../Shared/ErrorMessage";
 import DarkButton from "../Buttons/DarkButton";
+import { toast } from "sonner";
 
 const ContactUsForm = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
+    reset,
   } = useForm<TContactUsFormSchema>({
     resolver: zodResolver(contactUsFormSchema),
   });
 
   const onSubmit = (data: TContactUsFormSchema) => {
-    console.log(data);
+    reset();
+    toast.success("Your request has been sent");
   };
   return (
     <form
@@ -35,7 +38,7 @@ const ContactUsForm = () => {
         </label>
         <input
           {...register("name")}
-          name="name"
+          id="name"
           type="text"
           placeholder="Your Name"
           className="border w-full px-4 py-2 outline-none rounded-md"
@@ -52,7 +55,7 @@ const ContactUsForm = () => {
         </label>
         <input
           {...register("email")}
-          name="email"
+          id="email"
           type="text"
           placeholder="Your Email"
           className="border w-full px-4 py-2 outline-none rounded-md"
@@ -69,7 +72,7 @@ const ContactUsForm = () => {
         </label>
         <textarea
           {...register("message")}
-          name="message"
+          id="message"
           placeholder="Your message"
           className="border w-full px-4 py-2 outline-none rounded-md"
         />

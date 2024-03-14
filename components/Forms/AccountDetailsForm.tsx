@@ -69,7 +69,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
         </label>
         <input
           {...register("name", { value: userData?.name })}
-          name="name"
+          id="name"
           type="text"
           defaultValue={userData?.name}
           placeholder="First Name"
@@ -87,7 +87,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
         </label>
         <input
           {...register("lastName", { value: userData?.lastName })}
-          name="lastName"
+          id="lastName"
           type="text"
           defaultValue={userData?.lastName}
           placeholder="Last Name"
@@ -107,7 +107,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
         </label>
         <input
           {...register("username", { value: userData?.username })}
-          name="username"
+          id="username"
           type="text"
           defaultValue={userData?.username}
           placeholder="Display Name"
@@ -132,7 +132,7 @@ const AccountDetailsForm = ({ userData }: TUserData) => {
         </label>
         <input
           {...register("email", { value: userData?.email })}
-          name="email"
+          id="email"
           type="email"
           defaultValue={userData?.email}
           placeholder="Email"

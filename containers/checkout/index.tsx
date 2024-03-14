@@ -114,8 +114,8 @@ const OrderSummary = ({ user_id }: { user_id: string | undefined }) => {
         <p>Total</p>
         <p className="text-neutral_07 ">
           {coupon_title
-            ? `${totalPriceWithDiscount.toFixed(2)}`
-            : `${totalPriceWithDelivery.toFixed(2)}`}
+            ? `$${totalPriceWithDiscount.toFixed(2)}`
+            : `$${totalPriceWithDelivery.toFixed(2)}`}
         </p>
       </div>
     </div>

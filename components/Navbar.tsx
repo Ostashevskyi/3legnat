@@ -8,7 +8,6 @@ import { Squash as Hamburger } from "hamburger-react";
 
 import Counter from "@/components/Shared/Counter";
 import Discount from "@/components/Shared/Discount";
-import SearchInput from "@/components/Inputs/SearchInput";
 
 import {
   HEADER_NAV_ICONS,
@@ -20,6 +19,9 @@ import { signOut, useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { fetchShoppingCart } from "@/redux/slices/cartSlice";
+import InstagramIcon from "./Icons/Instagram";
+import FacebookIcon from "./Icons/Facebook";
+import YoutubeIcon from "./Icons/Youtube";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -67,7 +69,6 @@ const Navbar = () => {
           }
         >
           <ul className={isOpen ? "flex flex-col" : "hidden lg:flex gap-10"}>
-            {isOpen && <SearchInput />}
             {HEADER_NAV_LINKS.map((link) => {
               return (
                 <div
@@ -138,25 +139,10 @@ const Navbar = () => {
                   <DarkButton>Sign In</DarkButton>
                 </Link>
               )}
-              <div className="flex gap-6">
-                <Image
-                  src={"/icons/instagram.svg"}
-                  alt="insta"
-                  width={24}
-                  height={24}
-                />
-                <Image
-                  src={"/icons/facebook.svg"}
-                  alt="insta"
-                  width={24}
-                  height={24}
-                />
-                <Image
-                  src={"/icons/youtube.svg"}
-                  alt="insta"
-                  width={24}
-                  height={24}
-                />
+              <div className="flex gap-6 mt-5">
+                <InstagramIcon color="#141718" />
+                <FacebookIcon color="#141718" />
+                <YoutubeIcon color="#141718" />
               </div>
             </div>
           )}

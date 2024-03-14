@@ -50,7 +50,6 @@ const LoginForm = () => {
       } else if (signInResult?.error) {
         setError("Invalid email or password");
       } else if (signInResult?.ok) {
-        // Redirect or do something else upon successful sign-in
         redirect("/");
       }
     } catch (error) {
