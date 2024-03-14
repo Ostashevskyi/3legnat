@@ -1,10 +1,11 @@
 import { options } from "@/app/api/auth/[...nextauth]/options";
+import { URL } from "@/utils/constants";
 import { getServerSession } from "next-auth";
 
 export const getUserBillingAddressById = async () => {
   const session = await getServerSession(options);
   const res = await fetch(
-    `http://localhost:3000/api/billing_address?user_id=${session?.user.user_id}`,
+    `${URL}/api/billing_address?user_id=${session?.user.user_id}`,
     {
       method: "GET",
       headers: {

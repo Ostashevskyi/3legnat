@@ -1,5 +1,7 @@
+import { URL } from "@/utils/constants";
+
 const getArticles = async () => {
-  const res = await fetch(`http://localhost:3000/api/articles`, {
+  const res = await fetch(`${URL}/api/articles`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",

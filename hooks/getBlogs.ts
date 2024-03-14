@@ -1,5 +1,7 @@
+import { URL } from "@/utils/constants";
+
 export const getBlog = async (slug?: string) => {
-  const res = await fetch(`http://localhost:3000/api/blog`, {
+  const res = await fetch(`${URL}/api/blog`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -7,7 +9,6 @@ export const getBlog = async (slug?: string) => {
     body: JSON.stringify({
       slug,
     }),
-    cache: "no-store",
   });
 
   const data = await res.json();
