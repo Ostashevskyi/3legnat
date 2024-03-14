@@ -12,7 +12,7 @@ const AccountDetails = async () => {
       <AccountDetailsForm userData={userData} />
       <ChangePasswordForm
         password={userData?.password}
-        user_id={userData?.user_id}
+        email={userData?.email}
       />
     </section>
   );

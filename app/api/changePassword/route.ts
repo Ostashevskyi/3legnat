@@ -6,7 +6,7 @@ import prisma from "@/lib/client";
 
 export async function POST(req: Request) {
   try {
-    const { oldPassword, currentPassword, newPassword, user_id } =
+    const { oldPassword, currentPassword, newPassword, email } =
       await req.json();
 
     const isSamePass = await compare(oldPassword, currentPassword);
@@ -16,7 +16,7 @@ export async function POST(req: Request) {
 
       await prisma.user.update({
         where: {
-          user_id,
+          email,
         },
         data: {
           password: hashedNewPassword,
