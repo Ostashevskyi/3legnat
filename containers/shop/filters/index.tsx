@@ -2,7 +2,6 @@
 
 import React from "react";
 
-import SortByDropdown from "@/components/Dropdowns/SortByDropdown";
 import CategoryDropdown from "@/components/Dropdowns/CategoryDropdown";
 import FiltersToolBar from "@/components/Buttons/FiltersToolBar";
 
@@ -14,7 +13,6 @@ const Filters = () => {
           <CategoryDropdown />
         </div>
         <div className="py-2 border-y flex justify-between items-center md:gap-8 md:border-none">
-          <SortByDropdown />
           <FiltersToolBar />
         </div>
       </div>

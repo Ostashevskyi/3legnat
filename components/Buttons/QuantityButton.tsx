@@ -19,8 +19,11 @@ const QuantityButton = ({
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { cart } = useAppSelector((state) => state.cartReducer);
-  const [counter, setCounter] = useState(product?.quantity);
+
+  const [counter, setCounter] = useState(product.quantity);
   const { data: session } = useSession();
+
+  console.log(product, counter);
 
   useEffect(() => {
     if (cart.length) {
