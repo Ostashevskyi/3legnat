@@ -1,10 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "@/redux/store";
+import { AppDispatch, useAppSelector } from "@/redux/store";
 import { TCartProduct } from "@/types/CartProduct";
 import { useSession } from "next-auth/react";
-import { fetchShoppingCart } from "@/redux/slices/cartSlice";
+import {
+  calculateTotalPrice,
+  fetchShoppingCart,
+  setTotalPrice,
+} from "@/redux/slices/cartSlice";
 
 const QuantityButton = ({
   product,
@@ -14,8 +18,20 @@ const QuantityButton = ({
   bg: "white" | "gray";
 }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const { cart } = useAppSelector((state) => state.cartReducer);
   const [counter, setCounter] = useState(product?.quantity);
   const { data: session } = useSession();
+
+  useEffect(() => {
+    if (cart.length) {
+      const total = cart
+        ?.map((product) => product.total_price)
+        ?.reduce((prev, next) => prev + next);
+
+      dispatch(setTotalPrice(total));
+      dispatch(calculateTotalPrice(total));
+    }
+  }, [counter, cart]);
 
   const handleClick = async (type: string) => {
     const user_id = session?.user.user_id;

@@ -21,7 +21,7 @@ import Empty from "@/components/Shared/Empty";
 const Cart = () => {
   const { data: session } = useSession();
   const dispatch = useDispatch<AppDispatch>();
-  const { cart, status, deliveryPrice } = useAppSelector(
+  const { cart, deliveryPrice, totalPrice } = useAppSelector(
     (state) => state.cartReducer
   );
 
@@ -51,7 +51,7 @@ const Cart = () => {
 
   const SummarySection = useMemo(() => {
     return <CartSummary />;
-  }, [, deliveryPrice, cart.length]);
+  }, [deliveryPrice, cart, totalPrice]);
 
   return (
     <section className="p-mobile lg:flex justify-between items-start gap-16 max-container">

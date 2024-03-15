@@ -22,15 +22,6 @@ const Discount = () => {
           </Link>
         </span>
       </div>
-      <div>
-        <Image
-          src={"/icons/close.svg"}
-          alt="cross"
-          width={20}
-          height={20}
-          className="mr-5"
-        />
-      </div>
     </div>
   );
 };
